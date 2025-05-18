@@ -1,11 +1,11 @@
 
 from fastapi import FastAPI, UploadFile, Form
-from modules.extractor import estrai_blocchi_da_pdf
-from modules.relazione_gpt import genera_relazione_gpt
-from modules.relazione_claude import genera_relazione_claude
-from modules.storage_handler import upload_html_to_supabase
-from modules.make_webhook import invia_a_make
-from modules.report_generator import costruisci_payload
+from extractor import estrai_blocchi_da_pdf
+from elazione_gpt import genera_relazione_gpt
+from relazione_claude import genera_relazione_claude
+from storage_handler import upload_html_to_supabase
+from make_webhook import invia_a_make
+from report_generator import costruisci_payload
 import os
 
 app = FastAPI()
