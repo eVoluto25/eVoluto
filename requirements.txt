@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+openai
+anthropic
+python-multipart
+supabase
+matplotlib
+pandas
+PyMuPDF
+requests
+httpx
+jinja2
+python-dotenv
