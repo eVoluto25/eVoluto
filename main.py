@@ -64,3 +64,14 @@ async def analizza_pdf(
     os.remove(nome_file)
 
     return {"status": "ok", "relazione_gpt": url_gpt, "relazione_claude": url_claude}
+
+
+from modules.aggiorna_bandi import aggiorna_bandi
+
+@app.get("/aggiorna-bandi")
+def aggiorna_bandi_job():
+    try:
+        aggiorna_bandi()
+        return {"status": "aggiornamento completato"}
+    except Exception as e:
+        return {"error": str(e)}
