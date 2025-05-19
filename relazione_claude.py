@@ -1,4 +1,5 @@
-
+from jinja2 import Template
+from pathlib import Path
 from datetime import datetime
 
 def genera_relazione_con_claude(azienda, lista_bandi, valutazioni):
