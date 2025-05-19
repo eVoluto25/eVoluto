@@ -1,7 +1,7 @@
 
 from datetime import datetime
 
-def genera_relazione_claude(azienda, lista_bandi, valutazioni):
+def genera_relazione_con_claude(azienda, lista_bandi, valutazioni):
     oggi = datetime.now().strftime('%d/%m/%Y')
     azienda_nome = azienda.get("denominazione", "Azienda Sconosciuta")
     partita_iva = azienda.get("partita_iva", "ND")
