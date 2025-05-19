@@ -9,7 +9,7 @@ def carica_prompt_claude():
         return f.read()
 
 def genera_output_claude(dati_input):
-    prompt = carica_prompt_claude()
+    prompt_base = carica_prompt_claude()
     client = anthropic.Anthropic(api_key=dati_input["claude_api_key"])
     blocchi = suddividi_blocchi_coerenti(dati_input["contenuto"])
     risposte = []
@@ -17,6 +17,7 @@ def genera_output_claude(dati_input):
     for i, blocco in enumerate(blocchi):
         try:
             logging.info(f"📤 Inviando blocco {i+1}/{len(blocchi)} a Claude, lunghezza: {len(blocco)} caratteri")
+            prompt = f"{prompt_base}\n\n[Blocco {i+1}]\n\n{blocco}"
             response = client.messages.create(
                 model="claude-3-opus-20240229",
                 max_tokens=1024,
