@@ -4,7 +4,7 @@ import logging
 from fastapi import FastAPI, UploadFile, Form
 from extractor import estrai_blocchi_da_pdf
 from gpt_module import chiedi_gpt_blocchi, unisci_output_gpt
-from relazione_claude import genera_relazione_con_claude
+from relazione_claude import genera_relazione_claude
 from report_generator import costruisci_payload, genera_html_bancabile
 from email_sender import invia_email_risultato
 from bandi_utils import aggiorna_bandi
