@@ -60,3 +60,8 @@ def elabora_relazione_gpt(blocchi):
         },
         "bandi": []
     }
+    def unisci_output_gpt(risposte):
+        """
+        Unisce le risposte in un unico testo formattato.
+        """
+        return "\n\n".join(risposte)
