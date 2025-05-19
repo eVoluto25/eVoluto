@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Analisi GPT e Claude</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .pagina { page-break-after: always; padding: 40px; height: 1000px; box-sizing: border-box; }
+        .copertina { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background-color: #e6f0fa; }
+        h1 { font-size: 32px; margin-bottom: 10px; }
+        .logo { height: 80px; margin-bottom: 20px; }
+        .paragrafo { font-size: 14pt; margin-bottom: 20px; text-align: justify; }
+        .grafico { text-align: center; margin: 20px 0; }
+        .grafico img { max-width: 80%; height: auto; }
+        .semafori { display: flex; justify-content: space-around; margin: 20px 0; }
+        .semaforo { width: 100px; height: 100px; border-radius: 50%; line-height: 100px; color: white; text-align: center; font-weight: bold; }
+        .verde { background-color: green; }
+        .giallo { background-color: orange; }
+        .rosso { background-color: red; }
+    </style>
+</head>
+<body>
+
+<div class="pagina copertina">
+    <img src="{{ logo }}" alt="Logo Azienda" class="logo">
+    <h1>{{ azienda }}</h1>
+    <p><strong>Data:</strong> {{ data }}</p>
+    <h2>{{ titolo }}</h2>
+</div>
+
+<div class="pagina">
+    <h2>Indici Finanziari</h2>
+    <p class="paragrafo">{{ paragrafo_indici }}</p>
+    <div class="grafico">
+        <img src="{{ grafico_ebitda }}" alt="Grafico EBITDA">
+    </div>
+</div>
+
+<div class="pagina">
+    <h2>Analisi Complessiva & Bancabilità</h2>
+    <p class="paragrafo">{{ commento_gpt }}</p>
+    <div class="semafori">
+        <div class="semaforo {{ semaforo_bancabilita }}">Banca</div>
+        <div class="semaforo {{ semaforo_successo }}">Successo</div>
+    </div>
+</div>
+
+<div class="pagina">
+    <h2>Sostenibilità e Settore</h2>
+    <p class="paragrafo">{{ esempio_prestiti }}</p>
+    <div class="grafico">
+        <img src="{{ grafico_cashflow }}" alt="Grafico Cash Flow">
+    </div>
+    <p class="paragrafo">{{ commento_esg }}</p>
+    <div class="semafori">
+        <div class="semaforo {{ semaforo_sostenibilita }}">ESG</div>
+        <div class="semaforo {{ semaforo_economica }}">Economica</div>
+    </div>
+</div>
+
+<div class="pagina">
+    <h2>Strategia di Accesso ai Bandi</h2>
+    <p class="paragrafo">{{ strategia_bandi }}</p>
+</div>
+
+<div class="pagina">
+    <h2>Lista Bandi Selezionati</h2>
+    <p class="paragrafo">{{ lista_bandi }}</p>
+</div>
+
+<div class="pagina">
+    <h2>Filtri e Priorità</h2>
+    <p class="paragrafo">{{ filtro_priorita }}</p>
+    <p class="paragrafo">Probabilità stimata di accesso: <strong>{{ percentuale_successo }}%</strong></p>
+</div>
+
+<div class="pagina">
+    <h2>Impatto ESG</h2>
+    <p class="paragrafo">{{ esg }}</p>
+</div>
+
+<div class="pagina">
+    <h2>Consigli Strategici</h2>
+    <p class="paragrafo">{{ consigli }}</p>
+</div>
+
+<div class="pagina">
+    <h2>Legenda & Contatti</h2>
+    <p class="paragrafo">Semafori: Verde = Ottimo, Giallo = Adeguato, Rosso = Critico</p>
+    <p class="paragrafo">Contatti: info@azienda.it – Report generato automaticamente</p>
+</div>
+
+</body>
+</html>
