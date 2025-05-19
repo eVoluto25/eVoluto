@@ -3,16 +3,17 @@ import logging
 from blocchi_utils import suddividi_blocchi_coerenti
 from relazione_gpt import genera_relazione_gpt
 
+def carica_prompt_gpt():
+    with open("prompts/prompt_gpt.txt", encoding="utf-8") as f:
+        return f.read()
+
 def chiedi_gpt_blocchi(testo, modello="gpt-3.5-turbo"):
     blocchi = suddividi_blocchi_coerenti(testo)
     risposte = []
 
+    prompt_base = carica_prompt_gpt()
     for i, blocco in enumerate(blocchi):
-        prompt = (
-            f"Analizza l'estratto del bilancio seguente (blocco {i+1}):\n\n{blocco}\n\n"
-            "Estrai i principali indici economici in JSON (ROE, ROS, EBITDA, PFN, DSCR ecc.), "
-            "includi una valutazione sintetica, una percentuale di bancabilità e indicazioni ESG."
-        )
+        prompt = f"{prompt_base}\n\n[Blocco {i+1}]\n\n{blocco}"
 
         logging.info(f"📤 Inviando blocco {i+1}/{len(blocchi)} a GPT, lunghezza: {len(blocco)} caratteri")
 
