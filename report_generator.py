@@ -2,7 +2,7 @@
 def costruisci_payload(caratteristiche, url_gpt, url_claude, altri_dati):
     return {
         "azienda": caratteristiche.get("denominazione"),
-        "cf": caratteristiche.get("codice_fiscale", "ND"),
+        "partita_iva": caratteristiche.get("partita_iva", "ND"),
         "ateco": caratteristiche.get("codice_ateco", "ND"),
         "email": altri_dati.get("email"),
         "telefono": altri_dati.get("telefono"),
