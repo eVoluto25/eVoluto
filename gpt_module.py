@@ -1,6 +1,6 @@
-
 import openai
 import logging
+from blocchi_utils import suddividi_blocchi_coerenti
 
 def chiedi_gpt_blocchi(blocchi, modello="gpt-3.5-turbo"):
     risposte = []
