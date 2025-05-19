@@ -2,7 +2,7 @@
 from jinja2 import Template
 from pathlib import Path
 
-def genera_relazione_claude(dati):
+def genera_relazione_con_claude(dati):
     # Controlli minimi sui contenuti
     if len(dati.get("strategia_bandi", "").split()) < 250:
         print("⚠️ Claude: strategia_bandi troppo breve")
