@@ -1,0 +1,14 @@
+
+Analizza i dati finanziari dell’azienda e genera una relazione strutturata in 4 paragrafi:
+
+1. Analisi degli Indici di Bilancio (min. 300 parole)
+Commenta ROE, ROS, ROI, liquidità, indebitamento, copertura, rotazione, redditività.
+
+2. Commento Complessivo e Bancabilità (min. 250 parole)
+Valuta la solidità finanziaria generale e la bancabilità. Inserisci una percentuale di successo stimata.
+
+3. Sostenibilità Economica e Settore (min. 250 parole)
+Valuta l’equilibrio economico, la coerenza ESG e il contesto di mercato.
+
+4. Simulazioni di Prestito (min. 200 parole)
+Crea almeno 2 esempi concreti (es. 50k per 5 anni). Valuta la sostenibilità finanziaria.
