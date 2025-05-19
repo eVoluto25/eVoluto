@@ -1,82 +1,72 @@
 
-from fastapi import FastAPI, UploadFile, Form
-from extractor import estrai_blocchi_da_pdf
-from relazione_gpt import genera_relazione_gpt
-from relazione_claude import genera_relazione_claude
-from storage_handler import upload_html_to_supabase
-from make_webhook import invia_a_make
-from report_generator import costruisci_payload
 import os
+import logging
+from fastapi import FastAPI, UploadFile, Form
+from modules.extractor import estrai_blocchi_da_pdf
+from modules.gpt_analysis import chiedi_gpt_blocchi, unisci_output_gpt
+from modules.claude_analysis import genera_relazione_con_claude
+from modules.report_generator import costruisci_payload, genera_html_bancabile
+from modules.supabase_storage import upload_html_to_supabase
+from modules.email_sender import invia_email_risultato
+from modules.bandi_filter import aggiorna_bandi
+from make_webhook import invia_a_make
+
+logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()
 
 @app.post("/analizza-pdf/")
-import logging
-
-logging.info("📥 Ricevuta richiesta dal form")
-
 async def analizza_pdf(
     file: UploadFile = Form(...),
     nome_azienda: str = Form(...),
     email: str = Form(...),
     telefono: str = Form(...),
     partita_iva: str = Form(...),
-    provincia: str = Form(...),
-    regione: str = Form(...),
     codice_ateco: str = Form(...)
 ):
-    nome_file = f"upload_{file.filename}"
-    with open(nome_file, "wb") as f:
-        f.write(await file.read())
+    logging.info("🚀 Ricevuta richiesta per analisi PDF")
 
-    blocchi = estrai_blocchi_da_pdf(nome_file)
+    blocchi = estrai_blocchi_da_pdf(await file.read())
+    logging.info(f"📄 Estratti {len(blocchi)} blocchi dal PDF")
 
-    # Mock dati GPT e Claude
-    caratteristiche = {
-        "denominazione": nome_azienda,
-        "partita_iva": partita_iva,
-        "provincia": provincia,
-        "regione": regione,
+    logging.info("🤖 Chiamata a GPT per analisi blocchi...")
+    risposte_gpt = chiedi_gpt_blocchi(blocchi)
+    dati_estratti = unisci_output_gpt(risposte_gpt)
+    logging.info("✅ Analisi GPT completata")
+
+    logging.info("📄 Generazione HTML bancabile da GPT")
+    html_gpt = genera_html_bancabile(dati_estratti)
+    url_gpt = upload_html_to_supabase(html_gpt, "relazione_gpt.html")
+    logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
+
+    logging.info("🔎 Aggiornamento bandi disponibili...")
+    bandi_filtrati = aggiorna_bandi()
+
+    logging.info("🧠 Generazione relazione Claude")
+    html_claude = genera_relazione_con_claude(
+        caratteristiche_azienda={
+            "nome": nome_azienda,
+            "email": email,
+            "telefono": telefono,
+            "partita_iva": partita_iva,
+            "codice_ateco": codice_ateco
+        },
+        url_output_gpt=url_gpt,
+        bandi_filtrati=bandi_filtrati
+    )
+    url_claude = upload_html_to_supabase(html_claude, "relazione_claude.html")
+    logging.info(f"✅ Relazione Claude caricata: {url_claude}")
+
+    logging.info("📦 Invio email con risultati")
+    invia_email_risultato(email, url_gpt, url_claude)
+
+    logging.info("🔁 Invio a scenario Make")
+    invia_a_make({
+        "azienda": nome_azienda,
         "email": email,
         "telefono": telefono,
-        "codice_ateco": codice_ateco
-    }
+        "relazione_gpt": url_gpt,
+        "relazione_claude": url_claude
+    })
 
-    relazione_gpt = genera_relazione_gpt(caratteristiche)
-    url_gpt = upload_html_to_supabase(relazione_gpt, "relazione_gpt.html")
-
-    lista_bandi = [
-        {"titolo": "Bando Innovazione Lazio", "tipologia": "fondo perduto", "livello": "regionale"},
-        {"titolo": "Contributo Nazionale Ricerca", "tipologia": "credito d'imposta", "livello": "nazionale"},
-    ]
-    valutazioni = {
-        "successo": True,
-        "settore": True
-    }
-
-    relazione_claude = genera_relazione_claude(caratteristiche, lista_bandi, valutazioni)
-    url_claude = upload_html_to_supabase(relazione_claude, "relazione_claude.html")
-
-    payload = costruisci_payload(
-        caratteristiche=caratteristiche,
-        url_gpt=url_gpt,
-        url_claude=url_claude,
-        altri_dati={"email": email, "telefono": telefono}
-    )
-
-    logging.info("📧 Invio report finale tramite Make")
-    invia_a_make(payload)
-    os.remove(nome_file)
-
-    return {"status": "ok", "relazione_gpt": url_gpt, "relazione_claude": url_claude}
-
-
-from aggiorna_bandi import aggiorna_bandi
-
-@app.get("/aggiorna-bandi")
-def aggiorna_bandi_job():
-    try:
-        aggiorna_bandi()
-        return {"status": "aggiornamento completato"}
-    except Exception as e:
-        return {"error": str(e)}
+    return {"message": "Analisi completata con successo", "relazione_gpt": url_gpt, "relazione_claude": url_claude}
