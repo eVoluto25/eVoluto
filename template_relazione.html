@@ -2,6 +2,38 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    body { font-family: Arial, sans-serif; margin: 5vw; }
+    .pagina { padding: 5vw; }
+    .logo { width: 40%; max-width: 200px; height: auto; }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    .paragrafo, .bancabilita { font-size: 1em; }
+
+    .semaforo {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        margin: 5px;
+        display: inline-block;
+    }
+    .rosso { background-color: red; animation: lampeggia 1s infinite; }
+    .giallo { background-color: orange; animation: lampeggia 1s infinite; }
+    .verde { background-color: green; animation: lampeggia 1s infinite; }
+
+    @keyframes lampeggia {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+    }
+
+    @media (max-width: 600px) {
+        h1 { font-size: 22px; }
+        h2 { font-size: 18px; }
+        .paragrafo, .bancabilita { font-size: 14px; }
+        .pagina { padding: 10px; }
+    }
+    </style>
     <meta charset="UTF-8">
     <title>Relazione Analitica</title>
     <style>
