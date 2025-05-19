@@ -8,7 +8,7 @@ def carica_prompt_claude():
     with open("prompts/prompt_claude.txt", encoding="utf-8") as f:
         return f.read()
 
-def genera_output_claude(dati_input):
+def genera_relazione_con_claude(dati_input):
     prompt_base = carica_prompt_claude()
     client = anthropic.Anthropic(api_key=dati_input["claude_api_key"])
     blocchi = suddividi_blocchi_coerenti(dati_input["contenuto"])
