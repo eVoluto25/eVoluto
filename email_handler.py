@@ -3,7 +3,7 @@ import smtplib
 from email.mime.text import MIMEText
 import os
 
-def invia_email_interna(azienda, url_gpt, url_claude, destinatario="verifica.evoluto@gmail.com"):
+def invia_email_risultato(azienda, url_gpt, url_claude, destinatario="verifica.evoluto@gmail.com"):
     corpo = f"""
     ✅ Analisi generata per: {azienda}
 
