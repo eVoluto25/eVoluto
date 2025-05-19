@@ -34,7 +34,7 @@ async def analizza_pdf(
     logging.info("✅ Analisi GPT completata")
 
     logging.info("📄 Generazione HTML bancabile da GPT")
-    html_gpt = genera_html_bancabile(dati_estratti)
+    html_gpt = costruisci_playroad(dati_estratti)
     url_gpt = upload_html_to_supabase(html_gpt, "relazione_gpt.html")
     logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
 
