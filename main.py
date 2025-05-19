@@ -3,7 +3,7 @@ import os
 import logging
 from fastapi import FastAPI, UploadFile, Form
 from extractor import estrai_blocchi_da_pdf
-from gpt_analysis import chiedi_gpt_blocchi, unisci_output_gpt
+from gpt_module import chiedi_gpt_blocchi, unisci_output_gpt
 from claude_analysis import genera_relazione_con_claude
 from report_generator import costruisci_payload, genera_html_bancabile
 from email_sender import invia_email_risultato
