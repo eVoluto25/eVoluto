@@ -44,7 +44,7 @@ def formatta_codici_ateco(codice):
     if "tutti" in codice or "non applicabile" in codice:
         return "TUTTI"
     if "\\" in codice or "/" in codice:
-        codice = codice.replace("\", "").replace("/", "")
+        codice = codice.replace("\\", "").replace("/", "")
     return codice
 
 def carica_su_supabase(file_csv):
