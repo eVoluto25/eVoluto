@@ -1,36 +1,24 @@
-import anthropic
-import logging
-from blocchi_utils import suddividi_blocchi_coerenti
 
-client = anthropic.Anthropic(api_key="YOUR_ANTHROPIC_API_KEY")
+from anthropic import Anthropic
+from relazione_claude import genera_relazione_claude
 
-def chiedi_claude_blocchi(testo, modello="claude-3-opus-20240229"):
-    blocchi = suddividi_blocchi_coerenti(testo)
-    risposte = []
+def carica_prompt_claude():
+    with open("prompts/prompt_claude.txt", encoding="utf-8") as f:
+        return f.read()
 
-    for i, blocco in enumerate(blocchi):
-        logging.info(f"🔹 Inviando blocco {i+1}/{len(blocchi)} a Claude, lunghezza: {len(blocco)} caratteri")
+def genera_output_claude(dati_input):
+    prompt = carica_prompt_claude()
+    client = Anthropic(api_key=dati_input["claude_api_key"])
 
-        prompt = (
-            f"Analizza l'estratto di bilancio seguente (blocco {i+1}):\n\n{blocco}\n\n"
-            "Estrai i dati economici rilevanti (ROE, ROS, EBITDA, PFN, DSCR, Totale Attivo, ecc.) "
-            "e restituisci un JSON con questi valori. Includi una valutazione sintetica ESG e "
-            "un'indicazione della bancabilità e della sostenibilità finanziaria complessiva."
-        )
+    message = client.messages.create(
+        model="claude-3-sonnet-20240229",
+        max_tokens=4096,
+        temperature=0.6,
+        system=prompt,
+        messages=[
+            {"role": "user", "content": dati_input["contenuto"]}
+        ]
+    )
 
-        try:
-            response = client.messages.create(
-                model=modello,
-                max_tokens=1024,
-                temperature=0.2,
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
-            )
-            risposta = response.content[0].text.strip()
-            risposte.append(risposta)
-        except Exception as e:
-            logging.error(f"❌ Errore Claude nel blocco {i+1}: {e}")
-            risposte.append("")
-
-    return risposte
+    testo = message.content[0].text if hasattr(message.content[0], "text") else ""
+    return genera_relazione_claude(testo, dati_input)
