@@ -43,7 +43,7 @@ def formatta_codici_ateco(codice):
     codice = codice.lower().strip()
     if "tutti" in codice or "non applicabile" in codice:
         return "TUTTI"
-    if "\" in codice or "/" in codice:
+    if "\\" in codice or "/" in codice:
         codice = codice.replace("\", "").replace("/", "")
     return codice
 
