@@ -6,7 +6,7 @@ from extractor import estrai_blocchi_da_pdf
 from gpt_module import chiedi_gpt_blocchi, unisci_output_gpt
 from relazione_claude import genera_relazione_con_claude
 from report_generator import costruisci_payload
-from email_sender import invia_email_risultato
+from email_handler import invia_email_risultato
 from bandi_utils import aggiorna_bandi
 from make_webhook import invia_a_make
 
