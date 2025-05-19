@@ -15,6 +15,10 @@ logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()
 
+@app.api_route("/", methods=["GET", "HEAD"])
+def root_head():
+    return {"status": "✅ eVoluto backend attivo", "version": "1.0"}
+
 @app.post("/analizza-pdf/")
 async def analizza_pdf(
     file: UploadFile = File(..., alias="upload_1"),
