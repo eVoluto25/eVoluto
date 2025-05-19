@@ -11,6 +11,10 @@ import os
 app = FastAPI()
 
 @app.post("/analizza-pdf/")
+import logging
+
+logging.info("📥 Ricevuta richiesta dal form")
+
 async def analizza_pdf(
     file: UploadFile = Form(...),
     nome_azienda: str = Form(...),
@@ -60,6 +64,7 @@ async def analizza_pdf(
         altri_dati={"email": email, "telefono": telefono}
     )
 
+    logging.info("📧 Invio report finale tramite Make")
     invia_a_make(payload)
     os.remove(nome_file)
 
