@@ -66,7 +66,7 @@ async def analizza_pdf(
     return {"status": "ok", "relazione_gpt": url_gpt, "relazione_claude": url_claude}
 
 
-from modules.aggiorna_bandi import aggiorna_bandi
+from aggiorna_bandi import aggiorna_bandi
 
 @app.get("/aggiorna-bandi")
 def aggiorna_bandi_job():
