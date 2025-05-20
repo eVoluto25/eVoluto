@@ -2,7 +2,7 @@ import requests
 import httpx
 import os
 import logging
-from fastapi import FasAPI, Form
+from fastapi import FastAPI, Form
 from extractor import estrai_blocchi_da_pdf
 from gpt_module import chiedi_gpt_blocchi, unisci_output_gpt
 from relazione_claude import genera_relazione_con_claude
