@@ -100,7 +100,19 @@ async def analizza_pdf(data: InputData = Body(...)):
         "relazione_gpt": url_gpt,
         "relazione_claude": url_claude
     })
-    
-except Exception as e:
-    logging.error(f"❌ Errore durante l'elaborazione: {e}")
-        
+
+    return JSONResponse(
+        content={
+            "status": "success",
+            "relazione_gpt": url_gpt,
+            "relazione_claude": url_claude
+        },
+        status_code=200
+     )
+
+ except Exception as e:
+     logging.error(f"❌ Errore durante l'elaborazione: {e}")
+     return JSONResponse(
+         content={"status": "error", "message": str(e)},
+         status_code=500
+     )
