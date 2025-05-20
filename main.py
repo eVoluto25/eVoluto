@@ -27,6 +27,13 @@ def root_head():
 
 @app.post("/analizza-pdf/")
 async def analizza_pdf(data: InputData = Body(...)):
+    # Avvia l’elaborazione in background
+    threading.Thread(target=elabora_pdf, args=(data,)).start()
+
+    # Risponde immediatamente a Make
+    return JSONResponse(content={"status": "🧠 Analisi in corso"}, status_code=202)
+
+def elabora_pdf(data: InputData):
     file_url = data.file_url
     nome_amministratore = data.name
     email = data.email
