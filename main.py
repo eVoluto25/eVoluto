@@ -2,8 +2,7 @@ import requests
 import httpx
 import os
 import logging
-from fastapi import FastAPI, UploadFile, Form
-from fastapi import File
+from fastapi import FasAPI, Form
 from extractor import estrai_blocchi_da_pdf
 from gpt_module import chiedi_gpt_blocchi, unisci_output_gpt
 from relazione_claude import genera_relazione_con_claude
@@ -22,7 +21,7 @@ def root_head():
 
 @app.post("/analizza-pdf/")
 async def analizza_pdf(
-    file: UploadFile = File(..., alias="upload_1"),
+    file_url: str = Form(..., alias="upload_1"),,
     nome_amministratore: str = Form(..., alias="name_2"),
     email: str = Form(..., alias="email_1"),
     telefono: str = Form(..., alias="phone_1")
@@ -35,7 +34,8 @@ async def analizza_pdf(
     logging.info("🚀 Ricevuta richiesta per analisi PDF")
 
     response = requests.get(file_url)
-    file_bytes = await file.read()
+    response.raise_for_status()
+    file_bytes = response.content
 
     response = httpx.get(url)
     if response.status_code != 200:
