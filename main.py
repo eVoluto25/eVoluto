@@ -22,7 +22,7 @@ def root_head():
 
 @app.post("/analizza-pdf/")
 async def analizza_pdf(
-    file_url: str = Form(..., alias="upload_1"),
+    file: UploadFile = File(...),
     nome_amministratore: str = Form(..., alias="name_2"),
     email: str = Form(..., alias="email_1"),
     telefono: str = Form(..., alias="phone_1")
@@ -35,8 +35,7 @@ async def analizza_pdf(
     logging.info("🚀 Ricevuta richiesta per analisi PDF")
 
     response = requests.get(file_url)
-    response.raise_for_status()
-    file_bytes = response.content
+    file_bytes = await file.read()
 
     response = httpx.get(url)
     if response.status_code != 200:
