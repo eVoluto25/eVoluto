@@ -57,8 +57,17 @@ def elabora_pdf(data: InputData):
         raise HTTPException(status_code=400, detail="Errore nel download del file PDF")
     file_bytes = response.content
     
-    blocchi = estrai_blocchi_da_pdf(response.content)
-    logging.info(f"📄 Estratti {len(blocchi)} blocchi dal PDF")
+    # Scarica il PDF dal file_url
+    response = requests.get(file_url)
+    response.raise_for_status()
+    file_bytes = response.content
+
+    # Apre il PDF con PyMuPDF (fitz) per analizzarlo
+    import fitz  # Assicurati che sia già importato in cima al file
+    with fitz.open(stream=file_bytes, filetype="pdf") as doc:
+        blocchi = estrai_blocchi_da_pdf(doc)
+
+    logging.info(f"📚 Estratti {len(blocchi)} blocchi dal PDF")
 
     logging.info("🤖 Chiamata a GPT per analisi blocchi...")
     risposte_gpt = chiedi_gpt_blocchi(blocchi)
