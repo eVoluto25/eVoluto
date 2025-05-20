@@ -48,7 +48,7 @@ async def analizza_pdf(data: InputData = Body(...)):
         logging.info(f"📧 Email: {email}")
         logging.info(f"📞 Telefono: {telefono}")
         logging.info("🚀 Ricevuta richiesta per analisi PDF")
-
+    try:
         response = requests.get(file_url)
         response.raise_for_status()
         file_bytes = response.content
