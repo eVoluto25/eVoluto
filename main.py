@@ -28,7 +28,7 @@ async def analizza_pdf(
     telefono: str = Form(..., alias="phone_1")
 ):
     logging.info("🔁 Entrata nella funzione analizza_pdf")
-    logging.info(f"📤 URL file ricevuto: {file_url}")
+    logging.info(f"📤 File ricevuto: {file.filename}")
     logging.info(f"👤 Amministratore: {nome_amministratore}")
     logging.info(f"📧 Email: {email}")
     logging.info(f"📞 Telefono: {telefono}")
