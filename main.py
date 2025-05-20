@@ -21,7 +21,7 @@ def root_head():
 
 @app.post("/analizza-pdf/")
 async def analizza_pdf(
-    file: UploadFile = File(..., alias="upload_1"),
+    file_url: str = Form(..., alias="upload_1")
     nome_amministratore: str = Form(..., alias="name_2"),
     email: str = Form(..., alias="email_1"),
     telefono: str = Form(..., alias="phone_1")
@@ -32,6 +32,10 @@ async def analizza_pdf(
     logging.info(f"📧 Email: {email}")
     logging.info(f"📞 Telefono: {telefono}")
     logging.info("🚀 Ricevuta richiesta per analisi PDF")
+
+    response = requests.get(file_url)
+    response.raise_for_status()
+    file_bytes = response.content
 
     blocchi = estrai_blocchi_da_pdf(await file.read())
     logging.info(f"📄 Estratti {len(blocchi)} blocchi dal PDF")
