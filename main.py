@@ -110,8 +110,8 @@ async def analizza_pdf(data: InputData = Body(...)):
         status_code=200
      )
 
- except Exception as e:
-     logging.error(f"❌ Errore durante l'elaborazione: {e}")
+    except Exception as e:
+        logging.error(f"❌ Errore durante l'elaborazione: {e}")
      return JSONResponse(
          content={"status": "error", "message": str(e)},
          status_code=500
