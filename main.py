@@ -22,7 +22,7 @@ def root_head():
 
 @app.post("/analizza-pdf/")
 async def analizza_pdf(
-    file: UploadFile = File(...),
+    file: UploadFile = File(..., alias="upload_1"),
     nome_amministratore: str = Form(..., alias="name_2"),
     email: str = Form(..., alias="email_1"),
     telefono: str = Form(..., alias="phone_1")
