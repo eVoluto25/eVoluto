@@ -36,8 +36,7 @@ async def analizza_pdf(data: InputData = Body(...)):
     # Risponde immediatamente a Make
     return JSONResponse(content={"status": "🧠 Analisi in corso"}, status_code=202)
 
-def elabora_pdf(data: InputData):
-    try:
+    def elabora_pdf(data: InputData):
         file_url = data.file_url
         nome_amministratore = data.name
         email = data.email
@@ -50,7 +49,6 @@ def elabora_pdf(data: InputData):
         logging.info(f"📞 Telefono: {telefono}")
         logging.info("🚀 Ricevuta richiesta per analisi PDF")
 
-    try:
         response = requests.get(file_url)
         response.raise_for_status()
         file_bytes = response.content
