@@ -36,34 +36,24 @@ async def analizza_pdf(data: InputData = Body(...)):
     return JSONResponse(content={"status": "🧠 Analisi in corso"}, status_code=202)
 
 def elabora_pdf(data: InputData):
-    file_url = data.file_url
-    nome_amministratore = data.name
-    email = data.email
-    telefono = data.phone
+    try:
+        file_url = data.file_url
+        nome_amministratore = data.name
+        email = data.email
+        telefono = data.phone
 
-    logging.info("🔁 Entrata nella funzione analizza_pdf")
-    logging.info(f"📤 File URL: {file_url}")
-    logging.info(f"👤 Amministratore: {nome_amministratore}")
-    logging.info(f"📧 Email: {email}")
-    logging.info(f"📞 Telefono: {telefono}")
-    logging.info("🚀 Ricevuta richiesta per analisi PDF")
+        logging.info("🔁 Entrata nella funzione analizza_pdf")
+        logging.info(f"📤 File URL: {file_url}")
+        logging.info(f"👤 Amministratore: {nome_amministratore}")
+        logging.info(f"📧 Email: {email}")
+        logging.info(f"📞 Telefono: {telefono}")
+        logging.info("🚀 Ricevuta richiesta per analisi PDF")
 
     response = requests.get(file_url)
     response.raise_for_status()
     file_bytes = response.content
 
-    response = httpx.get(file_url)
-    if response.status_code != 200:
-        raise HTTPException(status_code=400, detail="Errore nel download del file PDF")
-    file_bytes = response.content
-    
-    # Scarica il PDF dal file_url
-    response = requests.get(file_url)
-    response.raise_for_status()
-    file_bytes = response.content
-
-    # Apre il PDF con PyMuPDF (fitz) per analizzarlo
-    import fitz  # Assicurati che sia già importato in cima al file
+    import fitz  # PyMuPDF
     with fitz.open(stream=file_bytes, filetype="pdf") as doc:
         blocchi = estrai_blocchi_da_pdf(doc)
 
@@ -88,8 +78,8 @@ def elabora_pdf(data: InputData):
             "nome": nome_azienda,
             "email": email,
             "telefono": telefono,
-            "partita_iva": partita_iva,
-            "codice_ateco": codice_ateco
+            "partita_iva": "ND",
+            "codice_ateco": "ND"
         },
         url_output_gpt=url_gpt,
         bandi_filtrati=bandi_filtrati
@@ -109,21 +99,6 @@ def elabora_pdf(data: InputData):
         "relazione_claude": url_claude
     })
     
-def elabora_pdf(data: InputData):
-    try: 
-        # Tutto il tuo codice esistente: scarica, analizza, genera, invia...
-    
-        return JSONResponse(
-            content={
-                "status": "success",
-                "relazione_gpt": url_gpt,
-                "relazione_claude": url_claude
-            }, status_code=200)
-
-        except Exception as e:
-            logging.error(f"❌ Errore durante l'elaborazione: {e}")
-            return JSONResponse({
-                "status": "error", 
-                "message": str(e),
-            }, status_code=200)
-            
+except Exception as e:
+    logging.error(f"❌ Errore durante l'elaborazione: {e}")
+        
