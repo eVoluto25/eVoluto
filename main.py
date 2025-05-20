@@ -2,6 +2,7 @@ import requests
 import httpx
 import os
 import logging
+from fastapi import Body
 from pydantic import BaseModel
 from fastapi import FastAPI, Form
 from extractor import estrai_blocchi_da_pdf
@@ -25,7 +26,7 @@ def root_head():
     return {"status": "✅ eVoluto backend attivo", "version": "1.0"}
 
 @app.post("/analizza-pdf/")
-async def analizza_pdf(data: InputData):
+async def analizza_pdf(data: InputData = Body(...)):
     file_url = data.file_url
     nome_amministratore = data.name
     email = data.email
