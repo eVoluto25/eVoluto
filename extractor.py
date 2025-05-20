@@ -1,3 +1,4 @@
+from blocchi_utils import suddividi_blocchi_coerenti
 
 import fitz  # PyMuPDF
 import logging
@@ -12,14 +13,7 @@ def estrai_blocchi_da_pdf(percorso_pdf, max_caratteri=3000):
 
     logging.info(f"🧩 Testo totale PDF: {len(testo)} caratteri")
 
-    while len(testo) > max_caratteri:
-        split_point = testo[:max_caratteri].rfind(".")
-        blocchi.append(testo[:split_point + 1].strip())
-        testo = testo[split_point + 1:]
-
-    if testo.strip():
-        blocchi.append(testo.strip())
-
-    logging.info(f"📦 Diviso in {len(blocchi)} blocchi")
+    blocchi = suddividi_blocchi_coerenti(testo, max_caratteri)
+    logging.info(f"🧱 Diviso in {len(blocchi)} blocchi coerenti")
 
     return blocchi
