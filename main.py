@@ -1,4 +1,4 @@
-
+import httpx
 import os
 import logging
 from fastapi import FastAPI, UploadFile, Form
@@ -37,7 +37,9 @@ async def analizza_pdf(
     response.raise_for_status()
     file_bytes = response.content
 
-    blocchi = estrai_blocchi_da_pdf(await file.read())
+    response = httpx.get(url)
+    response.raise_for_status()
+    blocchi = estrai_blocchi_da_pdf(response.content)
     logging.info(f"📄 Estratti {len(blocchi)} blocchi dal PDF")
 
     logging.info("🤖 Chiamata a GPT per analisi blocchi...")
