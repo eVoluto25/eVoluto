@@ -93,26 +93,28 @@ async def analizza_pdf(data: InputData = Body(...)):
     invia_email_risultato(email, url_gpt, url_claude)
 
     logging.info("🔁 Invio a scenario Make")
-    invia_a_make({
-        "azienda": nome_azienda,
-        "email": email,
-        "telefono": telefono,
-        "relazione_gpt": url_gpt,
-        "relazione_claude": url_claude
-    })
 
-    return JSONResponse(
-        content={
-            "status": "success",
+    try:
+        invia_a_make({
+            "azienda": nome_azienda,
+            "email": email,
+            "telefono": telefono,
             "relazione_gpt": url_gpt,
             "relazione_claude": url_claude
-        },
-        status_code=200
-     )
+        })
 
-    except Exception as e:
-        logging.error(f"❌ Errore durante l'elaborazione: {e}")
-     return JSONResponse(
-         content={"status": "error", "message": str(e)},
-         status_code=500
-     )
+        return JSONResponse(
+            content={
+                "status": "success",
+                "relazione_gpt": url_gpt,
+                "relazione_claude": url_claude
+            },
+            status_code=200
+         )
+
+     except Exception as e:
+         logging.error(f"❌ Errore durante l'elaborazione: {e}")
+         return JSONResponse(
+             content={"status": "error", "message": str(e)},
+             status_code=500
+         )
