@@ -108,5 +108,22 @@ def elabora_pdf(data: InputData):
         "relazione_gpt": url_gpt,
         "relazione_claude": url_claude
     })
+    
+def elabora_pdf(data: InputData):
+    try: 
+        # Tutto il tuo codice esistente: scarica, analizza, genera, invia...
+    
+        return JSONResponse(
+            content={
+                "status": "success",
+                "relazione_gpt": url_gpt,
+                "relazione_claude": url_claude
+            }, status_code=200)
 
-    return {"message": "Analisi completata con successo", "relazione_gpt": url_gpt, "relazione_claude": url_claude}
+        except Exception as e:
+            logging.error(f"❌ Errore durante l'elaborazione: {e}")
+            return JSONResponse({
+                "status": "error", 
+                "message": str(e),
+            }, status_code=200)
+            
