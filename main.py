@@ -49,9 +49,13 @@ def elabora_pdf(data: InputData):
         logging.info(f"📞 Telefono: {telefono}")
         logging.info("🚀 Ricevuta richiesta per analisi PDF")
 
-    response = requests.get(file_url)
-    response.raise_for_status()
-    file_bytes = response.content
+    try:
+        response = requests.get(file_url)
+        response.raise_for_status()
+        file_bytes = response.content
+    except Exception as e:
+        logging.error(f"❌ Errore nel download del PDF: {e}")
+        raise HTTPException(status_code=400, detail="Errore nel download del file PDF")
 
     import fitz  # PyMuPDF
     with fitz.open(stream=file_bytes, filetype="pdf") as doc:
