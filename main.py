@@ -2,6 +2,7 @@ import requests
 import httpx
 import os
 import logging
+from pydantic import BaseModel
 from fastapi import FastAPI, Form
 from extractor import estrai_blocchi_da_pdf
 from gpt_module import chiedi_gpt_blocchi, unisci_output_gpt
@@ -11,23 +12,27 @@ from email_handler import invia_email_risultato
 from aggiorna_bandi import aggiorna_bandi
 from make_webhook import invia_a_make
 
-logging.basicConfig(level=logging.INFO)
-
 app = FastAPI()
+
+class InputData(BaseModel):
+    file_url: str
+    name: str
+    phone: str
+    email: str
 
 @app.api_route("/", methods=["GET", "HEAD"])
 def root_head():
     return {"status": "✅ eVoluto backend attivo", "version": "1.0"}
 
 @app.post("/analizza-pdf/")
-async def analizza_pdf(
-    file_url: str = Form(..., alias="upload_1"),
-    nome_amministratore: str = Form(..., alias="name_2"),
-    email: str = Form(..., alias="email_1"),
-    telefono: str = Form(..., alias="phone_1")
-):
+async def analizza_pdf(data: InputData):
+    file_url = data.file_url
+    nome_amministratore = data.name
+    email = data.email
+    telefono = data.phone
+
     logging.info("🔁 Entrata nella funzione analizza_pdf")
-    logging.info(f"📤 File ricevuto: {file.filename}")
+    logging.info(f"📤 File URL: {file_url}")
     logging.info(f"👤 Amministratore: {nome_amministratore}")
     logging.info(f"📧 Email: {email}")
     logging.info(f"📞 Telefono: {telefono}")
