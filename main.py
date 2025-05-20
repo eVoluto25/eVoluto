@@ -38,7 +38,10 @@ async def analizza_pdf(
     file_bytes = response.content
 
     response = httpx.get(url)
-    response.raise_for_status()
+    if response.status_code != 200:
+        raise HTTPException(status_code=400, detail="Errore nel download del file PDF")
+    file_bytes = response.content
+    
     blocchi = estrai_blocchi_da_pdf(response.content)
     logging.info(f"📄 Estratti {len(blocchi)} blocchi dal PDF")
 
