@@ -3,6 +3,7 @@ import httpx
 import os
 import threading
 import logging
+import fitz  # PyMuPDF
 from fastapi.responses import JSONResponse
 from fastapi import Body
 from pydantic import BaseModel
@@ -57,7 +58,6 @@ def elabora_pdf(data: InputData):
         logging.error(f"❌ Errore nel download del PDF: {e}")
         raise HTTPException(status_code=400, detail="Errore nel download del file PDF")
 
-    import fitz  # PyMuPDF
     with fitz.open(stream=file_bytes, filetype="pdf") as doc:
         blocchi = estrai_blocchi_da_pdf(doc)
 
