@@ -3,6 +3,7 @@ import httpx
 import os
 import threading
 import logging
+from fastapi.responses import JSONResponse
 from fastapi import Body
 from pydantic import BaseModel
 from fastapi import FastAPI, Form
@@ -51,7 +52,7 @@ def elabora_pdf(data: InputData):
     response.raise_for_status()
     file_bytes = response.content
 
-    response = httpx.get(url)
+    response = httpx.get(file_url)
     if response.status_code != 200:
         raise HTTPException(status_code=400, detail="Errore nel download del file PDF")
     file_bytes = response.content
