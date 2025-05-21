@@ -9,7 +9,7 @@ def carica_prompt_gpt():
         return f.read()
 
 def chiedi_gpt_blocchi(testo, modello="gpt-3.5-turbo"):
-    blocco_grezzo = "\n\n".join(blocchi)
+    blocco_grezzo = testo  # usa direttamente il testo passato in input
     blocchi = suddividi_blocchi_coerenti(blocco_grezzo)
     risposte = []
 
