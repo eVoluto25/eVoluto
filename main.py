@@ -10,7 +10,7 @@ from fastapi import FastAPI, Form
 from extractor import estrai_blocchi_da_pdf
 from gpt_module import chiedi_gpt_blocchi, unisci_output_gpt
 from relazione_claude import genera_relazione_con_claude
-from report_generator import costruisci_payload
+from report_generator import costruisci_payload 
 from email_handler import invia_email_risultato
 from aggiorna_bandi import aggiorna_bandi
 from make_webhook import invia_a_make
