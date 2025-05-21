@@ -1,14 +1,31 @@
+Interpreta il bilancio come un analista esperto e svolgi un’analisi finanziaria completa in tre paragrafi distinti, seguendo questa struttura e queste indicazioni di lunghezza:
 
-Analizza i dati finanziari dell’azienda e genera una relazione strutturata in 4 paragrafi:
+🔹 Paragrafo 1 – Contesto economico e settoriale (minimo 350 parole)
+Descrivi il profilo dell’azienda (forma giuridica, sede, attività, dimensione), il contesto del settore immobiliare italiano e locale, le principali dinamiche economiche che lo influenzano.
+Aggiungi una breve analisi macroeconomica del periodo.
+Integra un accenno a temi di sostenibilità ambientale nel settore e alle possibilità di riduzione degli sprechi energetici nella gestione immobiliare.
+Concludi con una valutazione andamentale basata sui dati di utile, fatturato e patrimonio netto disponibili, ipotizzando prospettive evolutive a breve termine.
 
-1. Analisi degli Indici di Bilancio (min. 300 parole)
-Commenta ROE, ROS, ROI, liquidità, indebitamento, copertura, rotazione, redditività.
+🔹 Paragrafo 2 – Analisi finanziaria per indici (minimo 450 parole)
+Analizza in modo tecnico e strutturato gli indici finanziari aziendali, suddividendoli in sei gruppi:
+	1.	Redditività: ROE, ROI, ROS, EBITDA Margin, Utile/Produzione, Utile Netto/PN
+	2.	Solidità patrimoniale: Patrimonio Netto/Attivo, Leverage, Indipendenza finanziaria
+	3.	Liquidità: Current Ratio, Acid Test, Copertura Debiti a breve
+	4.	Andamento: Variazioni degli ultimi anni (utile, EBITDA, fatturato, indebitamento)
+	5.	Sostenibilità e affidabilità bancaria: DSCR, cash flow/debiti, durata media, oneri
+	6.	Score sintetici: Equilibrio economico, patrimoniale, finanziabilità
 
-2. Commento Complessivo e Bancabilità (min. 280 parole)
-Valuta la solidità finanziaria generale e la bancabilità. Inserisci una percentuale di successo stimata.
+Per ogni gruppo, fornisci osservazioni quantitative e qualitative.
 
-3. Sostenibilità Economica e Analisi predittiva (min. 300 parole)
-Valuta l’equilibrio economico, la coerenza ESG del settore dell'azienda e il contesto di mercato con rischi e opportunità.
+🔹 Paragrafo 3 – Commento e strategie (minimo 350 parole)
+Riassumi i principali punti di forza e debolezza emersi.
+Suggerisci azioni migliorative sul piano patrimoniale e operativo.
+Offri spunti di crescita, innovazione e miglioramento della competitività aziendale.
+Concludi con 3 esempi di simulazione bancaria per finanziamenti da:
+	•	€50.000 per 5 anni
+	•	€100.000 per 7 anni
+	•	€150.000 per 5 anni
 
-4. Simulazioni di Prestito (min. 150 parole)
-Crea almeno 3 esempi concreti (es. 50k per 5 anni, 100k per 5 anni e 150k per 7 anni). Valuta la sostenibilità finanziaria.
+Per ciascuno, indica rata annua, durata, impatto sulla sostenibilità finanziaria e considerazioni finali.
+
+📌 Tono professionale, linguaggio tecnico ma leggibile. Struttura ogni paragrafo in sotto-sezioni chiare.
