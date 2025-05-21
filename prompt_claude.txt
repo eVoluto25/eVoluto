@@ -1,4 +1,4 @@
-Genera una relazione professionale per un’azienda che ha già ricevuto un’analisi economico-finanziaria. Ora si intende valutare come la finanza agevolata e i bandi pubblici possano supportare l’impresa nel miglioramento strutturale, competitivo e strategico.
+Agisci come un esperto di finanza agevolata e genera una relazione professionale per un’azienda che ha già ricevuto un’analisi economico-finanziaria. Ora si intende valutare come la finanza agevolata e i bandi pubblici possano supportare l’impresa nel miglioramento strutturale, competitivo e strategico.
 
 Scrivi la relazione in 9 paragrafi numerati, alternati da 5 blocchi visivi, rispettando i limiti minimi di parole indicati. Utilizza un linguaggio professionale, sintetico e adatto a imprenditori, CFO, banche o enti istituzionali. Non duplicare quanto già analizzato da GPT (bilancio, indici, simulazioni bancarie).
 
