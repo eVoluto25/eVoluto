@@ -1,20 +1,42 @@
+Genera una relazione professionale per un’azienda che ha già ricevuto un’analisi economico-finanziaria. Ora si intende valutare come la finanza agevolata e i bandi pubblici possano supportare l’impresa nel miglioramento strutturale, competitivo e strategico.
 
-Scrivi una relazione articolata in 6 paragrafi sui bandi disponibili per l’azienda:
+Scrivi la relazione in 9 paragrafi numerati, alternati da 5 blocchi visivi, rispettando i limiti minimi di parole indicati. Utilizza un linguaggio professionale, sintetico e adatto a imprenditori, CFO, banche o enti istituzionali. Non duplicare quanto già analizzato da GPT (bilancio, indici, simulazioni bancarie).
 
-1. Strategia di Accesso ai Bandi (min. 300 parole)
-Spiega i criteri di selezione per i bandi: settore, ATECO, territorio, dimensione.
+✍️ Struttura e requisiti minimi
 
-2. Elenco dei Bandi Selezionati (min. 300 parole)
-Descrivi ogni bando con nome, ente, importo, scadenza, tipologia, requisiti.
+1. Analisi e selezione dei bandi disponibili (min. 700 parole)
+Descrivi il metodo di selezione a cascata (locale → regionale → nazionale), elenca i 10 bandi selezionati, spiega criteri di priorità (accessibilità, impatto, velocità) e classifica i bandi.
 
-3. Criteri di Priorità e Probabilità (min. 400 parole)
-Motiva le scelte. Inserisci una percentuale (%) stimata di successo nel partecipare.
+2. Matching bandi – bilancio aziendale (min. 600 parole)
+Valuta l’allineamento tra le opportunità dei bandi e la situazione economica e finanziaria. Indica punti di forza e debolezza dell’impresa, e come i bandi possono incidere su di essi.
 
-4. Dai priorità ai bandi locali (Camera di Commercio), poi a quelli regionali, infine ai nazionali (min. 400 parole).
-Scegli massimo 10 bandi, ordinati per rilevanza e accessibilità. Selezionali 2 della camera di commercio, 4 regionali e 4 nazionali utilizzando il metodo a cascata: es. se alla camera di commercio se ne trova 1, se ne scelgono 5 regionali, se però alla camera di commercio se ne trovano 3 allora vorrà dire che per arrivare a 10, saranno 6 quelli nazionali scelti.
+📈 BLOCCO VISIVO – Capacità di sfruttamento bandi (~50 parole)
+Inserisci un indicatore in % (es. “Capacità stimata: 76%”) + commento sintetico sul potenziale operativo dell’azienda nell’uso dei fondi.
 
-5. ottimizzazione fiscale e sostenibilità finanziaria (min. 400 parole)
-Fai comprendere come la finanza pubblica aiuta le imprese ad essere meno esposte nei confronti delle banche e come possono beneficiare in termini di riduzione del carico fiscale.  
+3. Obiettivi e strategie operative (min. 600 parole)
+Definisci quali azioni e investimenti può attuare l’azienda grazie ai bandi. Priorità: digitalizzazione, sostenibilità, innovazione, riduzione sprechi. Mostra le leve di sviluppo.
 
-6. Consigli Strategici (min. 300 parole)
-Suggerisci azioni per migliorare l’accesso a bandi futuri.
+4. Vantaggi della finanza agevolata (min. 500 parole)
+Spiega come il mix tra fondo perduto, credito d’imposta e tasso zero migliora l’equilibrio economico, la liquidità e l’accesso al credito. Enfatizza reputazione e competitività.
+
+📊 BLOCCO VISIVO – Impatto oggi vs domani (~50 parole)
+Confronto sintetico in % della situazione attuale vs attesa dopo utilizzo bandi (es. “Solidità: 62% → 81%”).
+
+5. Considerazioni strategiche (min. 150 parole)
+Scrivi 2–3 frasi che riassumano l’impatto trasformativo dell’accesso ai fondi pubblici sull’impresa. Focalizzati su resilienza, competitività e reputazione.
+
+6. Raccomandazioni e roadmap attuativa (min. 600 parole)
+Indica gli step operativi per partecipare ai bandi: team interno, documentazione, consulenze, scadenze. Crea una sequenza logica attuabile.
+
+
+7. Rischi e mitigazioni (min. 300 parole)
+Elenca almeno 3 rischi concreti (ritardi fondi, bocciature, impatto cash flow) e suggerisci una contromisura per ciascuno.
+
+📊 BLOCCO VISIVO – Sintesi numerica finale (~100 parole)
+Tabella con comparazione pre/post bandi per:
+	•	EBITDA (€)
+	•	Indebitamento (%)
+	•	Cash flow (€)
+	•	Score bancabilità (% e semaforo)
+
+🛠 Formato richiesto: testo ben strutturato, paragrafi numerati, blocchi visivi distinti. Usa bullet e tabelle dove utile. Nessuna ripetizione con la parte GPT.
