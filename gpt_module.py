@@ -5,7 +5,7 @@ from blocchi_utils import suddividi_blocchi_coerenti
 from relazione_gpt import genera_relazione_gpt
 
 def carica_prompt_gpt():
-    with open("prompts/prompt_gpt.txt", encoding="utf-8") as f:
+    with open("prompt_gpt.txt", encoding="utf-8") as f:
         return f.read()
 
 def chiedi_gpt_blocchi(testo, modello="gpt-3.5-turbo"):
