@@ -1,5 +1,6 @@
 import openai
 import logging
+from extractor import estrai_blocchi_da_pdf
 from blocchi_utils import suddividi_blocchi_coerenti
 from relazione_gpt import genera_relazione_gpt
 
