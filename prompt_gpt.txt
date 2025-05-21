@@ -29,3 +29,9 @@ Concludi con 3 esempi di simulazione bancaria per finanziamenti da:
 Per ciascuno, indica rata annua, durata, impatto sulla sostenibilità finanziaria e considerazioni finali.
 
 📌 Tono professionale, linguaggio tecnico ma leggibile. Struttura ogni paragrafo in sotto-sezioni chiare.
+
+Alla fine dell’analisi:
+	•	Assegna uno stato di semaforo (verde, giallo o rosso) per indicare il livello complessivo di salute finanziaria dell’azienda.
+	•	Esprimi un giudizio di bancabilità, indicando se l’azienda risulta finanziariamente affidabile per ottenere nuovi prestiti o investimenti.
+	•	Stima una percentuale di probabilità di successo nell’ottenere un prestito (es: “Probabilità stimata: 85%”) in base agli indici di redditività, solidità e liquidità.
+	•	Il paragrafo conclusivo deve avere almeno 70 parole.
