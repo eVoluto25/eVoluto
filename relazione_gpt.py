@@ -4,7 +4,7 @@ from pathlib import Path
 
 def genera_relazione_gpt(dati):
     # Controlli minimi sui contenuti
-    if len(dati.get("paragrafo_1", "").split()) < 300:
+    if len(dati.get("paragrafo_1", "").split()) < 350:
         print("⚠️ GPT: paragrafo_1 troppo breve")
         dati["paragrafo_1"] = "Sezione in fase di generazione: contenuto non ancora disponibile."
 
