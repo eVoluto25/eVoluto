@@ -11,3 +11,4 @@ requests
 httpx
 jinja2
 python-dotenv
+pdfplumber
