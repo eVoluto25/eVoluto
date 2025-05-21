@@ -8,7 +8,8 @@ def carica_prompt_gpt():
         return f.read()
 
 def chiedi_gpt_blocchi(testo, modello="gpt-3.5-turbo"):
-    blocchi = suddividi_blocchi_coerenti(testo)
+    blocco_grezzo = "\n\n".join(estrai_blocchi_da_pdf(doc))
+    blocchi = suddividi_blocchi_coerenti(blocco_grezzo)
     risposte = []
 
     prompt_base = carica_prompt_gpt()
