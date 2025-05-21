@@ -1,37 +1,47 @@
-Interpreta il bilancio come un analista esperto e svolgi un’analisi finanziaria completa in tre paragrafi distinti, seguendo questa struttura e queste indicazioni di lunghezza:
+Agisci come un analista finanziario professionista. Interpreta il bilancio aziendale fornito ed elabora una relazione composta da 4 paragrafi numerati, integrando 4 blocchi visivi per una migliore leggibilità e immediatezza.
 
-🔹 Paragrafo 1 – Contesto economico e settoriale (minimo 350 parole)
-Descrivi il profilo dell’azienda (forma giuridica, sede, attività, dimensione), il contesto del settore immobiliare italiano e locale, le principali dinamiche economiche che lo influenzano.
-Aggiungi una breve analisi macroeconomica del periodo.
-Integra un accenno a temi di sostenibilità ambientale nel settore e alle possibilità di riduzione degli sprechi energetici nella gestione immobiliare.
-Concludi con una valutazione andamentale basata sui dati di utile, fatturato e patrimonio netto disponibili, ipotizzando prospettive evolutive a breve termine.
+Utilizza un linguaggio tecnico ma accessibile, chiaro e professionale, adatto a imprenditori, manager, banche e stakeholder. Ogni paragrafo deve rispettare il numero minimo di parole indicato.
 
-🔹 Paragrafo 2 – Analisi finanziaria per indici (minimo 450 parole)
-Analizza in modo tecnico e strutturato gli indici finanziari aziendali, suddividendoli in sei gruppi:
-	1.	Redditività: ROE, ROI, ROS, EBITDA Margin, Utile/Produzione, Utile Netto/PN
-	2.	Solidità patrimoniale: Patrimonio Netto/Attivo, Leverage, Indipendenza finanziaria
-	3.	Liquidità: Current Ratio, Acid Test, Copertura Debiti a breve
-	4.	Andamento: Variazioni degli ultimi anni (utile, EBITDA, fatturato, indebitamento)
-	5.	Sostenibilità e affidabilità bancaria: DSCR, cash flow/debiti, durata media, oneri
-	6.	Score sintetici: Equilibrio economico, patrimoniale, finanziabilità
+✒️ Struttura e requisiti minimi
 
-Per ogni gruppo, fornisci osservazioni quantitative e qualitative.
+1. Contesto economico e settoriale (min. 350 parole)
+Descrivi il profilo dell’azienda: forma giuridica, sede, attività, dimensioni.
+Analizza il settore di riferimento (es. immobiliare, manifatturiero) a livello nazionale e locale.
+Aggiungi una panoramica macroeconomica e un riferimento ai temi ESG (efficienza energetica, riduzione sprechi).
+Concludi con una valutazione sintetica andamentale (utile, fatturato, patrimonio).
 
-🔹 Paragrafo 3 – Commento e strategie (minimo 350 parole)
-Riassumi i principali punti di forza e debolezza emersi.
-Suggerisci azioni migliorative sul piano patrimoniale e operativo.
-Offri spunti di crescita, innovazione e miglioramento della competitività aziendale.
-Concludi con 3 esempi di simulazione bancaria per finanziamenti da:
+2. Analisi finanziaria per indici (min. 450 parole)
+Suddividi l’analisi in 6 gruppi di indicatori, commentando ogni cluster in termini quantitativi e qualitativi:
+	•	Redditività: ROE, ROI, ROS, EBITDA Margin, Utile/Produzione, Utile Netto/PN
+	•	Solidità patrimoniale: PN/Attivo, Leverage, Indipendenza finanziaria
+	•	Liquidità: Current Ratio, Acid Test, Copertura debiti a breve
+	•	Andamento storico: variazioni utile, fatturato, EBITDA, indebitamento
+	•	Affidabilità bancaria: DSCR, Cash Flow/Debiti, oneri finanziari
+	•	Score sintetici: equilibrio economico, patrimoniale, bancabilità
+
+📈 BLOCCO VISIVO – Stato economico-finanziario aziendale (~50 parole)
+Inserisci un indicatore visivo che riassuma la condizione attuale dell’azienda: es. “Situazione complessiva: buona (Score 72%) – Semaforo 🟡”
+
+3. Commento e strategie operative (min. 350 parole)
+Evidenzia i principali punti di forza e debolezza emersi.
+Suggerisci azioni correttive sul piano patrimoniale, operativo e gestionale.
+Offri spunti di crescita: digitalizzazione, sostenibilità, innovazione.
+
+4. Simulazione finanziaria bancaria (min. 300 parole)
+Simula 3 casi di finanziamento:
 	•	€50.000 per 5 anni
 	•	€100.000 per 7 anni
 	•	€150.000 per 5 anni
 
-Per ciascuno, indica rata annua, durata, impatto sulla sostenibilità finanziaria e considerazioni finali.
+Per ciascuno, indica:
+	•	Rata annua prevista
+	•	Impatto su indebitamento e cash flow
+	•	Considerazioni strategiche
 
-📌 Tono professionale, linguaggio tecnico ma leggibile. Struttura ogni paragrafo in sotto-sezioni chiare.
+📊 BLOCCO VISIVO – Giudizio di bancabilità e indebitamento (~50 parole)
+Stato finale:
+	•	Semaforo (verde, giallo o rosso) sulla salute economica
+	•	Probabilità (%) di accesso a nuovo credito
+	•	Giudizio sintetico di affidabilità finanziaria
 
-Alla fine dell’analisi:
-	•	Assegna uno stato di semaforo (verde, giallo o rosso) per indicare il livello complessivo di salute finanziaria dell’azienda.
-	•	Esprimi un giudizio di bancabilità, indicando se l’azienda risulta finanziariamente affidabile per ottenere nuovi prestiti o investimenti.
-	•	Stima una percentuale di probabilità di successo nell’ottenere un prestito (es: “Probabilità stimata: 85%”) in base agli indici di redditività, solidità e liquidità.
-	•	Il paragrafo conclusivo deve avere almeno 70 parole.
+🛠 Formato richiesto: 4 paragrafi numerati, con 2 blocchi visivi tra le sezioni.
