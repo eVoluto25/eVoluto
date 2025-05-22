@@ -77,7 +77,7 @@ def elabora_pdf(data: InputData):
     logging.info("✅ Analisi GPT completata")
 
     logging.info("📄 Generazione HTML bancabile da GPT")
-    html_gpt = costruisci_payroad(caratteristiche, url_gpt, url_claude, altri_dati)
+    html_gpt = costruisci_payload(caratteristiche, url_gpt, url_claude, altri_dati)
     url_gpt = upload_html_to_supabase(html_gpt, "relazione_gpt.html")
     logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
 
