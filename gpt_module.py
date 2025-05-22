@@ -1,4 +1,4 @@
-from openai import openai
+import openai
 import os
 import logging
 from extractor import estrai_blocchi_da_pdf
