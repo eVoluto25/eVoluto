@@ -42,6 +42,7 @@ def elabora_pdf(data: InputData):
     email = data.email
     telefono = data.phone
 
+    logging.info("📥 Richiesta ricevuta al webhook")
     logging.info("🔁 Entrata nella funzione analizza_pdf")
     logging.info(f"📤 File URL: {file_url}")
     logging.info(f"👤 Amministratore: {nome_amministratore}")
