@@ -65,10 +65,11 @@ def elabora_pdf(data: InputData):
     response.raise_for_status()
     file_bytes = response.content
 
-    # Apre il PDF con PyMuPDF (fitz) per analizzarlo
-    import fitz  # Assicurati che sia già importato in cima al file
-    with fitz.open(stream=file_bytes, filetype="pdf") as doc:
-        blocchi = estrai_blocchi_da_pdf(doc)
+    # Converti i byte in un oggetto simile a file
+    pdf_file = BytesIO(file_bytes)
+
+    # Passa il file a pdfplumber tramite la funzione di estrazione
+    blocchi = estrai_blocchi_da_pdf(pdf_file)
 
     logging.info(f"📚 Estratti {len(blocchi)} blocchi dal PDF")
 
