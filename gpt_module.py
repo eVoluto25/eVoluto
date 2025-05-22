@@ -20,20 +20,23 @@ def chiedi_gpt_blocchi(testo, modello="gpt-3.5-turbo"):
     prompt_base = carica_prompt_gpt()
     for i, blocco in enumerate(blocchi):
         prompt = f"{prompt_base}\n\n[Blocco {i+1}]\n\n{blocco}"
-
         logging.info(f"📤 Inviando blocco {i+1}/{len(blocchi)} a GPT, lunghezza: {len(blocco)} caratteri")
 
         try:
-            response = openai.ChatCompletion.create(
+            response = client.chatcompletion.create(
                 model=modello,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.2,
+                messages=[
+                {"role": "system", "content": "Sei un analista finanziario."},
+                {"role": "user", "content": prompt}
+                ],
+                temperature=0.7,
+                max_tokens=1500
             )
-            contenuto = response.choices[0].message.content.strip()
+            testo_generato = response.choices[0].message.content.strip()
             risposte.append(contenuto)
         except Exception as e:
             logging.error(f"❌ Errore GPT sul blocco {i+1}: {e}")
-            risposte.append("ERRORE")
+            risposte.append(f"[Errore nel blocco {i+1}]")
 
     return risposte
 
