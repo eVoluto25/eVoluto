@@ -1,47 +1,29 @@
-Agisci come un analista finanziario professionista. Interpreta il bilancio aziendale fornito ed elabora una relazione composta da 4 paragrafi numerati, integrando 4 blocchi visivi per una migliore leggibilità e immediatezza.
+Genera un output in formato JSON valido con le seguenti chiavi. Ogni chiave deve contenere un paragrafo discorsivo con la lunghezza indicata. Lo stile deve essere professionale da analista bancario esperto, chiaro e adatto a un dossier rivolto sia ad imprenditori che a consulenti finanziari o istituti bancari.
 
-Utilizza un linguaggio tecnico ma accessibile, chiaro e professionale, adatto a imprenditori, manager, banche e stakeholder. Ogni paragrafo deve rispettare il numero minimo di parole indicato.
-
-✒️ Struttura e requisiti minimi
-
-1. Contesto economico e settoriale (min. 350 parole)
-Descrivi il profilo dell’azienda: forma giuridica, sede, attività, dimensioni.
-Analizza il settore di riferimento (es. immobiliare, manifatturiero) a livello nazionale e locale.
-Aggiungi una panoramica macroeconomica e un riferimento ai temi ESG (efficienza energetica, riduzione sprechi).
-Concludi con una valutazione sintetica andamentale (utile, fatturato, patrimonio).
-
-2. Analisi finanziaria per indici (min. 450 parole)
-Suddividi l’analisi in 6 gruppi di indicatori, commentando ogni cluster in termini quantitativi e qualitativi:
-	•	Redditività: ROE, ROI, ROS, EBITDA Margin, Utile/Produzione, Utile Netto/PN
-	•	Solidità patrimoniale: PN/Attivo, Leverage, Indipendenza finanziaria
-	•	Liquidità: Current Ratio, Acid Test, Copertura debiti a breve
-	•	Andamento storico: variazioni utile, fatturato, EBITDA, indebitamento
-	•	Affidabilità bancaria: DSCR, Cash Flow/Debiti, oneri finanziari
-	•	Score sintetici: equilibrio economico, patrimoniale, bancabilità
-
-📈 BLOCCO VISIVO – Stato economico-finanziario aziendale (~50 parole)
-Inserisci un indicatore visivo che riassuma la condizione attuale dell’azienda: es. “Situazione complessiva: buona (Score 72%) – Semaforo 🟡”
-
-3. Commento e strategie operative (min. 350 parole)
-Evidenzia i principali punti di forza e debolezza emersi.
-Suggerisci azioni correttive sul piano patrimoniale, operativo e gestionale.
-Offri spunti di crescita: digitalizzazione, sostenibilità, innovazione.
-
-4. Simulazione finanziaria bancaria (min. 300 parole)
-Simula 3 casi di finanziamento:
-	•	€50.000 per 5 anni
-	•	€100.000 per 7 anni
-	•	€150.000 per 5 anni
-
-Per ciascuno, indica:
-	•	Rata annua prevista
-	•	Impatto su indebitamento e cash flow
-	•	Considerazioni strategiche
-
-📊 BLOCCO VISIVO – Giudizio di bancabilità e indebitamento (~50 parole)
-Stato finale:
-	•	Semaforo (verde, giallo o rosso) sulla salute economica
-	•	Probabilità (%) di accesso a nuovo credito
-	•	Giudizio sintetico di affidabilità finanziaria
-
-🛠 Formato richiesto: 4 paragrafi numerati, con 2 blocchi visivi tra le sezioni.
+	1.	contesto_economico – 200–220 parole
+Analizza il contesto economico e settoriale in cui opera l’azienda, considerando scenari generali, tendenze del settore e possibili impatti futuri.
+	2.	forza_debolezza – 220–240 parole
+Individua e spiega i punti di forza, i punti deboli e gli scenari evolutivi dell’azienda. Usa un tono valutativo ma costruttivo.
+	3.	analisi_strategia – 180–220 parole
+Proponi una strategia utile per competere con successo nel mercato attuale e diventare punto di riferimento nel proprio settore.
+	4.	indici_aziendali – 220–260 parole
+Dividi il paragrafo in due sezioni:
+• Redditività: ROE, ROI, ROS, EBITDA Margin, Utile/Produzione, Utile Netto/PN
+• Solidità patrimoniale: PN/Attivo, Leverage, Indipendenza finanziaria
+Descrivi ogni gruppo e fornisci valori esemplificativi con giudizi positivi o critici.
+	5.	bancabilita_azienda – 220–260 parole
+Suddividi l’analisi in:
+• Liquidità (Current Ratio, Acid Test, Copertura debiti a breve)
+• Andamento storico (utile, fatturato, EBITDA, indebitamento)
+• Affidabilità bancaria (DSCR, Cash Flow/debiti, oneri finanziari)
+• Score sintetici (equilibrio economico, patrimoniale, bancabilità)
+Fornisci un quadro professionale e accessibile con giudizi positivi o critici.
+	6.	esg – 100–110 parole
+Analisi del settore aziendale rispetto a criteri ESG (ambientali, sociali e di governance).
+	7.	digitalizzazione – 100–110 parole
+Valutazione della digitalizzazione del settore aziendale: livello di innovazione, potenziale e criticità.
+	8.	giudizio – 200–220 parole
+Considerazione finale sulla salute finanziaria dell’azienda. Esprimi un giudizio (positivo o critico) e assegna un voto da 1 a 10, motivandolo.
+	9.	simulazione_bancaria – 250–270 parole
+Simula tre prestiti da 50k, 100k e 150k su 5 e 7 anni, considerando la sostenibilità finanziaria dell’azienda, tassi d’interesse attuali, rate e impatto.
+Concludi indicando quale simulazione è sostenibile e assegna un punteggio da 1 a 10 a ciascuna.
