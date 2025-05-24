@@ -1,42 +1,48 @@
+from datetime import datetime
 
-import pandas as pd
+def seleziona_bandi_priori(bandi):
+    oggi = datetime.today().date()
 
-TIPOLOGIA_PRIORITA = ["fondo perduto", "tasso agevolato", "credito d'imposta"]
+    # Filtro bandi aperti (non scaduti)
+    bandi_validi = [
+        b for b in bandi
+        if b.get("Data_chiusura") and datetime.strptime(b["Data_chiusura"], "%Y-%m-%d").date() >= oggi
+    ]
 
-def filtra_bandi(ateco, provincia, regione, max_bandi=10, dataset_path="dataset_bandi.csv"):
-    df = pd.read_csv(dataset_path)
-    df = df[df["ateco"].astype(str).str.startswith(str(ateco)[:2])]  # filtro per settore ATECO
+    # Ordina bandi per priorità agevolazione e scadenza
+    def priorita_agevolazione(b):
+        forma = (b.get("Forma_agevolazione") or "").lower()
+        if "fondo perduto" in forma:
+            return 0
+        elif "tasso zero" in forma:
+            return 1
+        elif "credito" in forma:
+            return 2
+        return 3
 
-    bandi_finali = []
+    bandi_validi.sort(key=lambda b: (priorita_agevolazione(b), b.get("Data_chiusura", "9999-12-31")))
 
-    # Provincia
-    provincia_match = df[df["provincia"].str.lower() == provincia.lower()]
-    bandi_finali.extend(ordina_per_tipologia(provincia_match, max_bandi - len(bandi_finali)))
+    # Filtri per categoria
+    def is_camera(b): return "camera di commercio" in (b.get("Ente", "")).lower()
+    def is_regionale(b): return "regionale" in (b.get("Categoria", "")).lower()
+    def is_nazionale(b): return "nazionale" in (b.get("Categoria", "")).lower()
 
-    # Regione
-    if len(bandi_finali) < max_bandi:
-        regione_match = df[
-            (df["regione"].str.lower() == regione.lower()) &
-            (~df.index.isin(provincia_match.index))
-        ]
-        bandi_finali.extend(ordina_per_tipologia(regione_match, max_bandi - len(bandi_finali)))
+    camcom = list(filter(is_camera, bandi_validi))
+    regionali = list(filter(is_regionale, bandi_validi))
+    nazionali = list(filter(is_nazionale, bandi_validi))
 
-    # Nazionale
-    if len(bandi_finali) < max_bandi:
-        nazionale_match = df[
-            (df["livello"].str.lower() == "nazionale") &
-            (~df.index.isin(provincia_match.index)) &
-            (~df.index.isin(regione_match.index))
-        ]
-        bandi_finali.extend(ordina_per_tipologia(nazionale_match, max_bandi - len(bandi_finali)))
+    selezionati = []
 
-    return [b["titolo"] for b in bandi_finali[:max_bandi]]
+    # Cascata con target massimo: 1 Camera, 3 Regionali, 16 Nazionali
+    selezionati += camcom[:1]
+    selezionati += regionali[:3]
+    selezionati += nazionali[:16]
 
-def ordina_per_tipologia(df, limite):
-    risultati = []
-    for tipo in TIPOLOGIA_PRIORITA:
-        subset = df[df["tipologia"].str.lower() == tipo]
-        risultati.extend(subset.to_dict(orient="records"))
-        if len(risultati) >= limite:
-            break
-    return risultati[:limite]
+    # Se meno di 20, aggiungi altri rimanenti unici
+    gia_scelti = set(b["id"] for b in selezionati)
+    rimanenti = [b for b in bandi_validi if b["id"] not in gia_scelti]
+
+    while len(selezionati) < 20 and rimanenti:
+        selezionati.append(rimanenti.pop(0))
+
+    return selezionati
