@@ -18,10 +18,15 @@ def genera_relazione_con_claude(dati_input):
             logging.info(f"📤 Inviando blocco {i+1}/{len(blocchi)} a Claude, lunghezza: {len(blocco)} caratteri")
 
             prompt = (
-                f"{prompt_base}\n\n"
-                f"--- ANALISI GPT ---\n{dati_input.get('url_output_gpt', '')}\n\n"
-                f"--- BANDI DISPONIBILI ---\n{json.dumps(dati_input.get('bandi_filtrati', []), indent=2)}\n\n"
-                f"[Blocco {i+1}]\n\n{blocco}"
+                prompt base
+                .replace("{{totale_bandi_attivi}}", str(dati_input.get("totale_bandi_attivi", 0)))
+                .replace("{{totale_importo_bandi}}", f"{dati_input.get('totale_importo_bandi', 0):,.0f} €")
+                + "\n\n--- ANALISI GPT ---\n"
+                + dati_input.get("url_output_gpt", "")
+                + "\n\n--- BANDI DISPONIBILI ---\n"
+                + json.dumps(dati_input.get("bandi_filtrati", []), indent=2)
+                + "\n\n[Blocco {i+1}]\n\n"
+                + blocco
             )
 
             response = client.messages.create(
