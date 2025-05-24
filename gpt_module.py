@@ -9,7 +9,7 @@ def carica_prompt_gpt():
     with open("prompt_gpt.txt", encoding="utf-8") as f:
         return f.read()
 
-def chiedi_gpt_blocchi(testo, modello="gpt-3.5-turbo"):
+def chiedi_gpt_blocchi(testo, modello="gpt-4-0125-preview"):
     from openai import openai
     client = openai(api_key=os.getenv("OPENAI_API_KEY"))  # Usa la chiave da variabile d'ambiente
     
