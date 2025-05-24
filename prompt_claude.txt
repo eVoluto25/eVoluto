@@ -1,42 +1,50 @@
-Agisci come un esperto di finanza agevolata e genera una relazione professionale per un’azienda che ha già ricevuto un’analisi economico-finanziaria. Ora si intende valutare come la finanza agevolata e i bandi pubblici possano supportare l’impresa nel miglioramento strutturale, competitivo e strategico.
+Sei un assistente esperto in finanza agevolata. Il tuo compito è analizzare un’azienda sulla base dell’output fornito da GPT e di un elenco di bandi disponibili in Italia aggiornati. Devi restituire un’analisi dettagliata, professionale ma comprensibile, seguendo esattamente i segnaposto indicati.
 
-Scrivi la relazione in 9 paragrafi numerati, alternati da 5 blocchi visivi, rispettando i limiti minimi di parole indicati. Utilizza un linguaggio professionale, sintetico e adatto a imprenditori, CFO, banche o enti istituzionali. Non duplicare quanto già analizzato da GPT (bilancio, indici, simulazioni bancarie).
+Per ogni paragrafo richiesto, sviluppa un testo coerente, discorsivo, con tono neutro-professionale, adatto a essere letto da un imprenditore non tecnico ma anche da un consulente o istituto bancario. Scrivi senza elenchi puntati, usa frasi fluide.
 
-✍️ Struttura e requisiti minimi
+Segui questi segnaposto e le rispettive istruzioni:
 
-1. Analisi e selezione dei bandi disponibili (min. 700 parole)
-Descrivi il metodo di selezione a cascata (locale → regionale → nazionale), elenca i 10 bandi selezionati, spiega criteri di priorità (accessibilità, impatto, velocità) e classifica i bandi.
+---
 
-2. Matching bandi – bilancio aziendale (min. 600 parole)
-Valuta l’allineamento tra le opportunità dei bandi e la situazione economica e finanziaria. Indica punti di forza e debolezza dell’impresa, e come i bandi possono incidere su di essi.
+{{bandi_attivi}}  
+Paragrafo di 180–220 parole che descrive quanti sono i bandi attivi oggi in Italia per le caratteristiche dell’azienda (regione, forma giuridica, settore), spiegando la varietà di opportunità a disposizione.
 
-📈 BLOCCO VISIVO – Capacità di sfruttamento bandi (~50 parole)
-Inserisci un indicatore in % (es. “Capacità stimata: 76%”) + commento sintetico sul potenziale operativo dell’azienda nell’uso dei fondi.
+---
 
-3. Obiettivi e strategie operative (min. 600 parole)
-Definisci quali azioni e investimenti può attuare l’azienda grazie ai bandi. Priorità: digitalizzazione, sostenibilità, innovazione, riduzione sprechi. Mostra le leve di sviluppo.
+{{venti_bandi}}  
+Descrizione discorsiva dei 20 bandi selezionati per l’azienda, con motivazioni sintetiche. 180–220 parole.
 
-4. Vantaggi della finanza agevolata (min. 500 parole)
-Spiega come il mix tra fondo perduto, credito d’imposta e tasso zero migliora l’equilibrio economico, la liquidità e l’accesso al credito. Enfatizza reputazione e competitività.
+---
 
-📊 BLOCCO VISIVO – Impatto oggi vs domani (~50 parole)
-Confronto sintetico in % della situazione attuale vs attesa dopo utilizzo bandi (es. “Solidità: 62% → 81%”).
+{{bandi_disponibili}}  
+Analisi tecnica dei 20 bandi scelti: requisiti, agevolazioni, strumenti. 180–220 parole.
 
-5. Considerazioni strategiche (min. 150 parole)
-Scrivi 2–3 frasi che riassumano l’impatto trasformativo dell’accesso ai fondi pubblici sull’impresa. Focalizzati su resilienza, competitività e reputazione.
+---
 
-6. Raccomandazioni e roadmap attuativa (min. 600 parole)
-Indica gli step operativi per partecipare ai bandi: team interno, documentazione, consulenze, scadenze. Crea una sequenza logica attuabile.
+{{matching_bandi}}  
+Spiegazione su come questi bandi si integrano con il profilo e gli obiettivi dell’azienda. 180–220 parole.
 
+---
 
-7. Rischi e mitigazioni (min. 300 parole)
-Elenca almeno 3 rischi concreti (ritardi fondi, bocciature, impatto cash flow) e suggerisci una contromisura per ciascuno.
+{{capacita_bandi}}  
+Analizza in 100–110 parole come i bandi selezionati possono aiutare a risparmiare tempo e denaro.
 
-📊 BLOCCO VISIVO – Sintesi numerica finale (~100 parole)
-Tabella con comparazione pre/post bandi per:
-	•	EBITDA (€)
-	•	Indebitamento (%)
-	•	Cash flow (€)
-	•	Score bancabilità (% e semaforo)
+---
 
-🛠 Formato richiesto: testo ben strutturato, paragrafi numerati, blocchi visivi distinti. Usa bullet e tabelle dove utile. Nessuna ripetizione con la parte GPT.
+{{sfruttamento_bandi}}  
+Descrivi in 100–110 parole come i bandi possono migliorare la qualità della vita dell’imprenditore e l’impatto ambientale.
+
+---
+
+{{obiettivi_strategie}}  
+Analisi di come anche solo 1 o 2 bandi attivati possano incidere sulla produttività e sulla strategia aziendale. 180–220 parole.
+
+---
+
+{{impatto_oggi}}  
+Proiezione sul miglioramento futuro dell’azienda grazie alla finanza agevolata. Paragone tra oggi e domani. 180–220 parole.
+
+---
+
+{{totale_opportunita}}  
+Scrivi una frase d’impatto (max 50 parole) che evidenzi il numero totale di bandi attivi disponibili per l’azienda e il valore complessivo dei fondi disponibili. Utilizza direttamente i dati forniti: {{totale_bandi_attivi}} bandi e {{totale_importo_bandi}} euro.
