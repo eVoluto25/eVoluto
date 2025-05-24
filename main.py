@@ -85,7 +85,10 @@ def elabora_pdf(data: InputData):
     logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
 
     logging.info("🔎 Aggiornamento bandi disponibili...")
-    bandi_filtrati = aggiorna_bandi()
+    from bandi_utils import seleziona_bandi_priori
+
+    bandi_non_filtrati = aggiorna_bandi()
+    bandi_filtrati = seleziona_bandi_priori(bandi_non_filtrati)
 
     logging.info("🧠 Generazione relazione Claude")
     html_claude = genera_relazione_con_claude(
