@@ -85,8 +85,6 @@ def elabora_pdf(data: InputData):
     logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
 
     logging.info("🔎 Aggiornamento bandi disponibili...")
-    from bandi_utils import seleziona_bandi_priori
-
     bandi_non_filtrati = aggiorna_bandi()
     bandi_filtrati = seleziona_bandi_priori(bandi_non_filtrati)
 
