@@ -6,15 +6,23 @@ Includi anche le seguenti informazioni generali come chiavi aggiuntive nel JSON:
 
 	1.	contesto_economico – 200–220 parole
 Analizza il contesto economico e settoriale in cui opera l’azienda, considerando scenari generali, tendenze del settore e possibili impatti futuri.
+
+
 	2.	forza_debolezza – 220–240 parole
 Individua e spiega i punti di forza, i punti deboli e gli scenari evolutivi dell’azienda. Usa un tono valutativo ma costruttivo.
+
+
 	3.	analisi_strategia – 180–220 parole
 Proponi una strategia utile per competere con successo nel mercato attuale e diventare punto di riferimento nel proprio settore.
+
+
 	4.	indici_aziendali – 220–260 parole
 Dividi il paragrafo in due sezioni:
 • Redditività: ROE, ROI, ROS, EBITDA Margin, Utile/Produzione, Utile Netto/PN
 • Solidità patrimoniale: PN/Attivo, Leverage, Indipendenza finanziaria
 Descrivi ogni gruppo e fornisci valori esemplificativi con giudizi positivi o critici.
+
+
 	5.	bancabilita_azienda – 220–260 parole
 Suddividi l’analisi in:
 • Liquidità (Current Ratio, Acid Test, Copertura debiti a breve)
@@ -22,12 +30,20 @@ Suddividi l’analisi in:
 • Affidabilità bancaria (DSCR, Cash Flow/debiti, oneri finanziari)
 • Score sintetici (equilibrio economico, patrimoniale, bancabilità)
 Fornisci un quadro professionale e accessibile con giudizi positivi o critici.
+
+
 	6.	esg – 100–110 parole
 Analisi del settore aziendale rispetto a criteri ESG (ambientali, sociali e di governance).
+
+
 	7.	digitalizzazione – 100–110 parole
 Valutazione della digitalizzazione del settore aziendale: livello di innovazione, potenziale e criticità.
+
+
 	8.	giudizio – 200–220 parole
 Considerazione finale sulla salute finanziaria dell’azienda. Esprimi un giudizio (positivo o critico) e assegna un voto da 1 a 10, motivandolo.
+
+
 	9.	simulazione_bancaria – 250–270 parole
 Simula tre prestiti da 50k, 100k e 150k su 5 e 7 anni, considerando la sostenibilità finanziaria dell’azienda, tassi d’interesse attuali, rate e impatto.
 Concludi indicando quale simulazione è sostenibile e assegna un punteggio da 1 a 10 a ciascuna.
