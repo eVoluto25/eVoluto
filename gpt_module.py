@@ -10,7 +10,6 @@ def carica_prompt_gpt():
         return f.read()
 
 def chiedi_gpt_blocchi(testo, modello="gpt-4-0125-preview"):
-    from openai import openai
     client = openai(api_key=os.getenv("OPENAI_API_KEY"))  # Usa la chiave da variabile d'ambiente
     
     blocco_grezzo = testo  # usa direttamente il testo passato in input
