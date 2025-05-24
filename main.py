@@ -88,6 +88,25 @@ def elabora_pdf(data: InputData):
     bandi_non_filtrati = aggiorna_bandi()
     bandi_filtrati = seleziona_bandi_priori(bandi_non_filtrati)
 
+    # Calcolo del numero e importo totale dei bandi
+    totale_bandi_attivi = len(bandi_compatibili)
+
+    totale_importo_bandi = sum(
+        b.get("stanziamento_incentivo", 0)
+        for b in bandi_compatibili
+        if isinstance(b.get("stanziamento_incentivo", 0), (int, float))
+    )
+
+    # Aggiunta al dizionario dei dati per Claude
+    dati_input = {
+        ...
+        "bandi_filtrati": bandi_filtrati,
+        "url_output_gpt": url_output_gpt,
+        "totale_bandi_attivi": totale_bandi_attivi,
+        "totale_importo_bandi": totale_importo_bandi,
+        ...
+    }
+
     logging.info("🧠 Generazione relazione Claude")
     html_claude = genera_relazione_con_claude(
         caratteristiche_azienda={
