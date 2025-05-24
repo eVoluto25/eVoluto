@@ -1,5 +1,9 @@
 Genera un output in formato JSON valido con le seguenti chiavi. Ogni chiave deve contenere un paragrafo discorsivo con la lunghezza indicata. Lo stile deve essere professionale da analista bancario esperto, chiaro e adatto a un dossier rivolto sia ad imprenditori che a consulenti finanziari o istituti bancari.
 
+Includi anche le seguenti informazioni generali come chiavi aggiuntive nel JSON:
+	•	nome_azienda: il nome dell’azienda analizzata (es. “Rossi Srl”)
+	•	nome_imprenditore: nome e cognome del referente aziendale o dell’imprenditore (es. “Giuseppe Rossi”)
+
 	1.	contesto_economico – 200–220 parole
 Analizza il contesto economico e settoriale in cui opera l’azienda, considerando scenari generali, tendenze del settore e possibili impatti futuri.
 	2.	forza_debolezza – 220–240 parole
