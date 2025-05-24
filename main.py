@@ -78,7 +78,7 @@ def elabora_pdf(data: InputData):
     dati_estratti = unisci_output_gpt(risposte_gpt)
     logging.info("✅ Analisi GPT completata")
 
-    invia_dati_a_make(
+    invia_a_make(
         codice_ateco=dati_estratti.get("codice_ateco"),
         forma_giuridica=dati_estratti.get("forma_giuridica"),
         provincia=dati_estratti.get("provincia"),
