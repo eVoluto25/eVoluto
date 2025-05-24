@@ -1,8 +1,7 @@
-
+import json
 import anthropic
 import logging
 from blocchi_utils import suddividi_blocchi_coerenti
-from relazione_claude import genera_relazione_con_claude
 
 def carica_prompt_claude():
     with open("prompts/prompt_claude.txt", encoding="utf-8") as f:
@@ -17,22 +16,25 @@ def genera_relazione_con_claude(dati_input):
     for i, blocco in enumerate(blocchi):
         try:
             logging.info(f"📤 Inviando blocco {i+1}/{len(blocchi)} a Claude, lunghezza: {len(blocco)} caratteri")
-            prompt = f"{prompt_base}\n\n[Blocco {i+1}]\n\n{blocco}"
+
+            prompt = (
+                f"{prompt_base}\n\n"
+                f"--- ANALISI GPT ---\n{dati_input.get('url_output_gpt', '')}\n\n"
+                f"--- BANDI DISPONIBILI ---\n{json.dumps(dati_input.get('bandi_filtrati', []), indent=2)}\n\n"
+                f"[Blocco {i+1}]\n\n{blocco}"
+            )
+
             response = client.messages.create(
                 model="claude-3-opus-20240229",
                 max_tokens=1024,
                 temperature=0.2,
-                messages=[
-                    {"role": "user", "content": f"{prompt}
-
-{blocco}"}
-                ]
+                messages=[{"role": "user", "content": prompt}]
             )
+
             contenuto = response.content[0].text.strip()
             risposte.append(contenuto)
         except Exception as e:
             logging.error(f"❌ Errore Claude sul blocco {i+1}: {e}")
             risposte.append("ERRORE")
 
-    testo = "\n\n".join(risposte)
-    return genera_relazione_con_claude(testo, dati_input)
+    return "\n\n".join(risposte)
