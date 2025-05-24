@@ -103,8 +103,7 @@ def elabora_pdf(data: InputData):
         "bandi_filtrati": bandi_filtrati,
         "url_output_gpt": url_output_gpt,
         "totale_bandi_attivi": totale_bandi_attivi,
-        "totale_importo_bandi": totale_importo_bandi,
-        ...
+        "totale_importo_bandi": totale_importo_bandi
     }
 
     logging.info("🧠 Generazione relazione Claude")
