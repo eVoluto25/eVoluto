@@ -99,7 +99,7 @@ def elabora_pdf(data: InputData):
 
     # Aggiunta al dizionario dei dati per Claude
     dati_input = {
-        ...
+        
         "bandi_filtrati": bandi_filtrati,
         "url_output_gpt": url_output_gpt,
         "totale_bandi_attivi": totale_bandi_attivi,
