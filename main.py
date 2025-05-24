@@ -116,7 +116,7 @@ def elabora_pdf(data: InputData):
             "codice_ateco": codice_ateco
         },
         url_output_gpt=url_gpt,
-        bandi_filtrati=bandi_filtrati
+        bandi_filtrati=bandi_filtrati,
         totale_bandi_attivi=totale_bandi_attivi,
         totale_importo_bandi=totale_importo_bandi
     )
