@@ -118,6 +118,8 @@ def elabora_pdf(data: InputData):
         },
         url_output_gpt=url_gpt,
         bandi_filtrati=bandi_filtrati
+        totale_bandi_attivi=totale_bandi_attivi,
+        totale_importo_bandi=totale_importo_bandi
     )
     url_claude = upload_html_to_supabase(html_claude, "relazione_claude.html")
     logging.info(f"✅ Relazione Claude caricata: {url_claude}")
