@@ -2,6 +2,7 @@ import json
 import anthropic
 import logging
 from blocchi_utils import suddividi_blocchi_coerenti
+from prompt_claude import carica_prompt_claude
 
 def carica_prompt_claude():
     with open("prompts/prompt_claude.txt", encoding="utf-8") as f:
