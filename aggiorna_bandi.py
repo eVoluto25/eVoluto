@@ -57,6 +57,8 @@ def carica_su_supabase(file_csv):
         reader = csv.DictReader(csvfile)
         for row in reader:
             row["Codici_ATECO"] = formatta_codici_ateco(row.get("Codici_ATECO", ""))
+            row["data_ultimo_aggiornamento"] = datetime.utcnow().isoformat()
+            
             try:
                 supabase.table(SUPABASE_TABLE).insert(row).execute()
             except Exception as e:
