@@ -78,6 +78,14 @@ def elabora_pdf(data: InputData):
     dati_estratti = unisci_output_gpt(risposte_gpt)
     logging.info("✅ Analisi GPT completata")
 
+    invia_dati_a_make(
+        codice_ateco=dati_estratti.get("codice_ateco"),
+        forma_giuridica=dati_estratti.get("forma_giuridica"),
+        provincia=dati_estratti.get("provincia"),
+        regione=dati_estratti.get("regione"),
+        denominazione=dati_estratti.get("nome_azienda")
+    )
+    
     logging.info("📄 Generazione HTML bancabile da GPT")
     html_gpt = costruisci_payload(caratteristiche, url_gpt, url_claude, altri_dati)
     url_gpt = upload_html_to_supabase(html_gpt, "relazione_gpt.html")
