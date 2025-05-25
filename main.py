@@ -202,7 +202,7 @@ try:
         "email": email,
         "telefono": telefono,
         "relazione_gpt": url_gpt,
-        "relazione_claude": url_claude
+        "relazione_claude": url_claude,
         "dossier_pdf": url_pdf
     })
 
