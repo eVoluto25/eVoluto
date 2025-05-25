@@ -145,6 +145,26 @@ def elabora_pdf(data: InputData):
     if not url_gpt or not url_claude:
         logging.warning("⚠️ URL GPT o Claude vuoto. Nessuna email inviata.")
         return
+        
+# 📄 Generazione PDF dossier
+import json
+from dossier_pdf import compila_dossier_pdf
+
+try:
+    blocchi_gpt = json.loads(html_gpt)
+    blocchi_claude = json.loads(html_claude)
+    blocchi_pdf = {**blocchi_gpt, **blocchi_claude}
+
+    compila_dossier_pdf(
+        template_path="template/dossier_base.pdf",
+        output_path="/tmp/dossier_finale.pdf",
+        blocchi_dict=blocchi_pdf
+    )
+
+    logging.info("📄 PDF dossier generato con successo.")
+
+except Exception as e:
+    logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
 
     logging.info("📦 Invio email con risultati")
     invia_email_risultato(email, url_gpt, url_claude)
