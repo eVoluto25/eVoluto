@@ -140,6 +140,11 @@ def elabora_pdf(data: InputData):
     aggiorna_stato("html_claude_caricato")
     logging.info(f"✅ Relazione Claude caricata: {url_claude}")
 
+    # ⚠️ Blocca l'invio se uno dei due HTML è vuoto
+    if not url_gpt or not url_claude:
+        logging.warning("⚠️ URL GPT o Claude vuoto. Nessuna email inviata.")
+        return
+
     logging.info("📦 Invio email con risultati")
     invia_email_risultato(email, url_gpt, url_claude)
 
