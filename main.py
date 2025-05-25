@@ -168,28 +168,28 @@ try:
         logging.warning(f"⚠️ Errore upload PDF: {e}")
         url_pdf = None
 
-except Exception as e:
-    logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
-    url_pdf = None
+    except Exception as e:
+        logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
+        url_pdf = None
 
-# 📬 Invio risultati via email
-logging.info("📩 Invio email con risultati")
-invia_email_risultato(email, url_gpt, url_claude)
+    # 📬 Invio risultati via email
+    logging.info("📩 Invio email con risultati")
+    invia_email_risultato(email, url_gpt, url_claude)
 
-# 🔁 Invio a scenario Make
-logging.info("🔁 Invio a scenario Make")
-invia_a_make({
-    "azienda": nome_azienda,
-    "email": email,
-    "telefono": telefono,
-    "relazione_gpt": url_gpt,
-    "relazione_claude": url_claude,
-    "dossier_pdf": url_pdf
-})
+    # 🔁 Invio a scenario Make
+    logging.info("🔁 Invio a scenario Make")
+    invia_a_make({
+        "azienda": nome_azienda,
+        "email": email,
+        "telefono": telefono,
+        "relazione_gpt": url_gpt,
+        "relazione_claude": url_claude,
+        "dossier_pdf": url_pdf
+    })
 
-return {
-    "message": "Analisi completata con successo",
-    "relazione_gpt": url_gpt,
-    "relazione_claude": url_claude,
-    "dossier_pdf": url_pdf
-}
+    return {
+        "message": "Analisi completata con successo",
+        "relazione_gpt": url_gpt,
+        "relazione_claude": url_claude,
+        "dossier_pdf": url_pdf
+    }
