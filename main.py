@@ -17,6 +17,12 @@ from aggiorna_bandi import aggiorna_bandi
 from make_webhook import invia_a_make
 from bandi_utils import seleziona_bandi_priori
 from io import BytesIO
+from gestore_processo import (
+    aggiorna_stato,
+    mostra_stato,
+    salva_blocchi_gpt,
+    salva_blocchi_claude
+)
 
 app = FastAPI()
 
@@ -77,16 +83,21 @@ def elabora_pdf(data: InputData):
     logging.info("🤖 Chiamata a GPT per analisi blocchi...")
     risposte_gpt = chiedi_gpt_blocchi(blocchi)
     dati_estratti = unisci_output_gpt(risposte_gpt)
+    blocchi_gpt = dati_estratti.split("\n\n")
+    salva_blocchi_gpt(blocchi_gpt)
+    aggiorna_stato("analisi_gpt_completata")
     logging.info("✅ Analisi GPT completata")
     
     logging.info("📄 Generazione HTML bancabile da GPT")
     html_gpt = costruisci_payload(caratteristiche_azienda, url_gpt, url_claude)
     url_gpt = upload_html_to_supabase(html_gpt, "relazione_gpt.html")
+    aggiorna_stato("html_gpt_generato")
     logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
 
     logging.info("🔎 Aggiornamento bandi disponibili...")
     bandi_non_filtrati = aggiorna_bandi()
     bandi_filtrati = seleziona_bandi_priori(bandi_non_filtrati)
+    aggiorna_stato("bandi_filtrati_completati")
 
     # Calcolo del numero e importo totale dei bandi
     totale_bandi_attivi = len(bandi_compatibili)
@@ -107,7 +118,9 @@ def elabora_pdf(data: InputData):
     }
 
     logging.info("🧠 Generazione relazione Claude")
+    aggiorna_stato("generazione_relazione_claude_iniziata")
     html_claude = genera_relazione_con_claude(
+    aggiorna_stato("generazione_relazione_claude_completata")
         caratteristiche_azienda={
             "nome": nome_azienda,
             "email": email,
@@ -121,6 +134,7 @@ def elabora_pdf(data: InputData):
         totale_importo_bandi=totale_importo_bandi
     )
     url_claude = upload_html_to_supabase(html_claude, "relazione_claude.html")
+    aggiorna_stato("html_claude_caricato")
     logging.info(f"✅ Relazione Claude caricata: {url_claude}")
 
     logging.info("📦 Invio email con risultati")
