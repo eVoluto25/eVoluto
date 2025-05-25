@@ -154,45 +154,42 @@ try:
     blocchi_claude = json.loads(html_claude)
     blocchi_pdf = {**blocchi_gpt, **blocchi_claude}
 
-    nome_file_pdf = genera_nome_file("dossier_pdf", ".pdf")
-
+    nome_file_pdf = genera_nome_file(nome_azienda, partita_iva, codice_ateco, "pdf")
     compila_dossier_pdf(
-        template_path="template/dossier_evoluto.pdf",
+        template_path="template/dossier_eVoluto.pdf",
         output_path=f"/tmp/{nome_file_pdf}",
         blocchi_dict=blocchi_pdf
     )
 
-    logging.info("📄 PDF dossier generato con successo.")
-
     try:
         url_pdf = upload_file_to_supabase(f"/tmp/{nome_file_pdf}", nome_file_pdf)
-        logging.info(f"📘 Dossier PDF caricato su Supabase: {url_pdf}")
+        logging.info(f"📄 Dossier PDF caricato su Supabase: {url_pdf}")
     except Exception as e:
         logging.warning(f"⚠️ Errore upload PDF: {e}")
         url_pdf = None
 
-    except Exception as e:
-        logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
-        url_pdf = None
+except Exception as e:
+    logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
+    url_pdf = None
 
-    # 📬 Invio risultati via email
-    logging.info("📦 Invio email con risultati")
-    invia_email_risultato(email, url_gpt, url_claude)
+# 📬 Invio risultati via email
+logging.info("📩 Invio email con risultati")
+invia_email_risultato(email, url_gpt, url_claude)
 
-     # 🤖 Invio a scenario Make
-    logging.info("🔁 Invio a scenario Make")
-    invia_a_make({
-        "azienda": nome_azienda,
-        "email": email,
-        "telefono": telefono,
-        "relazione_gpt": url_gpt,
-        "relazione_claude": url_claude,
-        "dossier_pdf": url_pdf
-    })
+# 🔁 Invio a scenario Make
+logging.info("🔁 Invio a scenario Make")
+invia_a_make({
+    "azienda": nome_azienda,
+    "email": email,
+    "telefono": telefono,
+    "relazione_gpt": url_gpt,
+    "relazione_claude": url_claude,
+    "dossier_pdf": url_pdf
+})
 
-    return {
-        "message": "Analisi completata con successo",
-        "relazione_gpt": url_gpt,
-        "relazione_claude": url_claude,
-        "dossier_pdf": url_pdf
-    }
+return {
+    "message": "Analisi completata con successo",
+    "relazione_gpt": url_gpt,
+    "relazione_claude": url_claude,
+    "dossier_pdf": url_pdf
+}
