@@ -11,7 +11,14 @@ def compila_dossier_pdf(template_path, output_path, blocchi_dict):
                 page.add_redact_annot(area, fill=(1, 1, 1))  # copre il segnaposto
             page.apply_redactions()
             for area in aree:
-                page.insert_textbox(area, testo, fontsize=10, wrap=True)
-
+                page.insert_textbox(
+                    area,
+                    testo,
+                    fontsize=12,           # Grandezza del carattere
+                    fontname="helv",       # Font Helvetica 
+                    color=(0, 0, 0.4),      # Blu scuro in RGB normalizzato
+                    wrap=True
+            )
+                
     doc.save(output_path)
     doc.close()
