@@ -120,7 +120,6 @@ def elabora_pdf(data: InputData):
     logging.info("🧠 Generazione relazione Claude")
     aggiorna_stato("generazione_relazione_claude_iniziata")
     html_claude = genera_relazione_con_claude(
-    aggiorna_stato("generazione_relazione_claude_completata")
         caratteristiche_azienda={
             "nome": nome_azienda,
             "email": email,
@@ -133,6 +132,8 @@ def elabora_pdf(data: InputData):
         totale_bandi_attivi=totale_bandi_attivi,
         totale_importo_bandi=totale_importo_bandi
     )
+
+    aggiorna_stato("generazione_relazione_claude_completata")
     url_claude = upload_html_to_supabase(html_claude, "relazione_claude.html")
     aggiorna_stato("html_claude_caricato")
     logging.info(f"✅ Relazione Claude caricata: {url_claude}")
