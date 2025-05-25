@@ -111,9 +111,7 @@ def elabora_pdf(data: InputData):
         if isinstance(b.get("stanziamento_incentivo", 0), (int, float))
     )
 
-    # Aggiunta al dizionario dei dati per Claude
     dati_input = {
-        
         "bandi_filtrati": bandi_filtrati,
         "url_output_gpt": url_output_gpt,
         "totale_bandi_attivi": totale_bandi_attivi,
@@ -141,42 +139,34 @@ def elabora_pdf(data: InputData):
     aggiorna_stato("html_claude_caricato")
     logging.info(f"✅ Relazione Claude caricata: {url_claude}")
 
-    # ⚠️ Blocca l'invio se uno dei due HTML è vuoto
     if not url_gpt or not url_claude:
         logging.warning("⚠️ URL GPT o Claude vuoto. Nessuna email inviata.")
         return
         
-# 📄 Generazione PDF dossier
-import json
-from dossier_pdf import compila_dossier_pdf
 
-try:
-    blocchi_claude = json.loads(html_claude)
-    blocchi_pdf = {**blocchi_gpt, **blocchi_claude}
-
-    nome_file_pdf = genera_nome_file(nome_azienda, partita_iva, codice_ateco, "pdf")
-    compila_dossier_pdf(
-        template_path="template/dossier_eVoluto.pdf",
-        output_path=f"/tmp/{nome_file_pdf}",
-        blocchi_dict=blocchi_pdf
-    ) 
-    url_pdf = upload_file_to_supabase(f"/tmp/{nome_file_pdf}", nome_file_pdf)
-    logging.info(f"📄 Dossier PDF caricato su Supabase: {url_pdf}")
-    
     try:
+        blocchi_claude = json.loads(html_claude)
+        blocchi_pdf = {**blocchi_gpt, **blocchi_claude}
+
+        nome_file_pdf = genera_nome_file(
+            caratteristiche_azienda.get("nome", ""),
+            caratteristiche_azienda.get("partita_iva", ""),
+            caratteristiche_azienda.get("codice_ateco", ""),
+            "pdf"
+        )
+        
         compila_dossier_pdf(
-            template_path="template/dossier_evoluto.pdf",
+            template_path="template/dossier_eVoluto.pdf",
             output_path=f"/tmp/{nome_file_pdf}",
             blocchi_dict=blocchi_pdf
-        )
+        ) 
         url_pdf = upload_file_to_supabase(f"/tmp/{nome_file_pdf}", nome_file_pdf)
         logging.info(f"📄 Dossier PDF caricato su Supabase: {url_pdf}")
-
+    
     except Exception as e:
         logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
         url_pdf = None
 
-    # 📬 Invio risultati via email
     logging.info("📩 Invio email con risultati")
     invia_email_risultato(email, url_gpt, url_claude)
 
