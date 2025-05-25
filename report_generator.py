@@ -1,11 +1,11 @@
 
-def costruisci_payload(caratteristiche, url_gpt, url_claude, altri_dati):
+def costruisci_payload(caratteristiche, url_gpt, url_claude):
     return {
         "azienda": caratteristiche.get("denominazione"),
         "partita_iva": caratteristiche.get("partita_iva", "ND"),
         "ateco": caratteristiche.get("codice_ateco", "ND"),
-        "email": altri_dati.get("email"),
-        "telefono": altri_dati.get("telefono"),
+        "email": caratteristiche.get("email"),
+        "telefono": caratteristiche.get("telefono"),
         "output_gpt": url_gpt,
         "output_claude": url_claude,
         "inviato": False
