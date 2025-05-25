@@ -23,3 +23,25 @@ def upload_html_to_supabase(html_content, file_name):
         return f"{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET}/{file_name}"
     else:
         raise Exception(f"❌ Upload fallito: {response.status_code} - {response.text}")
+
+def upload_pdf_to_supabase(file_path, file_name):
+    if not (SUPABASE_URL and SUPABASE_API_KEY and SUPABASE_BUCKET):
+        raise EnvironmentError("⚠️ Variabili ambiente Supabase mancanti.")
+
+    headers = {
+        "apikey": SUPABASE_API_KEY,
+        "Authorization": f"Bearer {SUPABASE_API_KEY}",
+        "Content-Type": "application/pdf"
+    }
+
+    url = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}/{file_name}"
+
+    with open(file_path, "rb") as f:
+        pdf_content = f.read()
+
+    response = requests.put(url, headers=headers, data=pdf_content)
+
+    if response.status_code in [200, 201]:
+        return f"{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET}/{file_name}"
+    else:
+        raise Exception(f"❌ Upload fallito PDF: {response.status_code} – {response.text}")
