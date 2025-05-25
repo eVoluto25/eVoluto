@@ -163,12 +163,39 @@ try:
 
     logging.info("📄 PDF dossier generato con successo.")
 
-except Exception as e:
-    logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
+    from storage_handler import upload_pdf_to_supabase
 
+    try:
+        # Nome file pulito per Supabase (es: dossier_rossi_srl.pdf)
+        nome_file_pdf = f"dossier_{nome_azienda.lower().replace(' ', '_')}.pdf"
+
+        # Caricamento su Supabase
+        from storage_handler import upload_pdf_to_supabase
+
+        try:
+            nome_file_pdf = f"dossier_{nome_azienda.lower().replace(' ', '_')}.pdf"
+
+            url_pdf = upload_pdf_to_supabase(
+                "/tmp/dossier_finale.pdf",
+                nome_file_pdf
+            )
+        
+            logging.info(f"📤 Dossier PDF caricato su Supabase: {url_pdf}")
+            logging.info("📎 Link pubblico PDF pronto per l’invio via Make o email.")
+        
+        except Exception as e:
+            logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
+            url_pdf = None
+
+    except Exception as e:
+        logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
+        url_pdf = None
+
+    # 📬 Invio risultati via email
     logging.info("📦 Invio email con risultati")
     invia_email_risultato(email, url_gpt, url_claude)
 
+     # 🤖 Invio a scenario Make
     logging.info("🔁 Invio a scenario Make")
     invia_a_make({
         "azienda": nome_azienda,
@@ -176,6 +203,12 @@ except Exception as e:
         "telefono": telefono,
         "relazione_gpt": url_gpt,
         "relazione_claude": url_claude
+        "dossier_pdf": url_pdf
     })
 
-    return {"message": "Analisi completata con successo", "relazione_gpt": url_gpt, "relazione_claude": url_claude}
+    return {
+        "message": "Analisi completata con successo",
+        "relazione_gpt": url_gpt,
+        "relazione_claude": url_claude,
+        "dossier_pdf": url_pdf
+    }
