@@ -156,7 +156,7 @@ try:
     blocchi_pdf = {**blocchi_gpt, **blocchi_claude}
 
     compila_dossier_pdf(
-        template_path="template/dossier_base.pdf",
+        template_path="template/dossier_evoluto.pdf",
         output_path="/tmp/dossier_finale.pdf",
         blocchi_dict=blocchi_pdf
     )
