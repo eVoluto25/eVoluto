@@ -12,7 +12,6 @@ def carica_prompt_gpt():
         return f.read()
 
 def chiedi_gpt_blocchi(testo, modello="gpt-4-0125-preview"):
-    openai.api_key = os.getenv("OPENAI_API_KEY")
     
     blocco_grezzo = testo  # usa direttamente il testo passato in input
     blocchi = suddividi_blocchi_coerenti(blocco_grezzo)
@@ -24,7 +23,7 @@ def chiedi_gpt_blocchi(testo, modello="gpt-4-0125-preview"):
         logging.info(f"📤 Inviando blocco {i+1}/{len(blocchi)} a GPT, lunghezza: {len(blocco)} caratteri")
 
         try:
-            response = client.chatcompletion.create(
+            response = client.chat.completions.create(
                 model=modello,
                 messages=[
                 {"role": "system", "content": "Sei un analista finanziario."},
