@@ -15,6 +15,7 @@ from report_generator import costruisci_payload
 from email_handler import invia_email_risultato
 from aggiorna_bandi import aggiorna_bandi
 from make_webhook import invia_a_make
+from extractor import estrai_caratteristiche_azienda
 from bandi_utils import seleziona_bandi_priori
 from io import BytesIO
 from gestore_processo import (
@@ -74,6 +75,7 @@ def elabora_pdf(data: InputData):
 
     # Converti i byte in un oggetto simile a file
     pdf_file = BytesIO(file_bytes)
+    caratteristiche_azienda = estrai_caratteristiche_azienda(pdf_file)
 
     # Passa il file a pdfplumber tramite la funzione di estrazione
     blocchi = estrai_blocchi_da_pdf(pdf_file)
