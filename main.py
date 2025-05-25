@@ -15,6 +15,7 @@ from report_generator import costruisci_payload
 from email_handler import invia_email_risultato
 from aggiorna_bandi import aggiorna_bandi
 from make_webhook import invia_a_make
+from dossier_pdf import compila_dossier_pdf
 from extractor import estrai_caratteristiche_azienda
 from bandi_utils import seleziona_bandi_priori
 from io import BytesIO
