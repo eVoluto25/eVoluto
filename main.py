@@ -151,41 +151,25 @@ import json
 from dossier_pdf import compila_dossier_pdf
 
 try:
-    blocchi_gpt = json.loads(html_gpt)
     blocchi_claude = json.loads(html_claude)
     blocchi_pdf = {**blocchi_gpt, **blocchi_claude}
 
+    nome_file_pdf = genera_nome_file("dossier_pdf", ".pdf")
+
     compila_dossier_pdf(
         template_path="template/dossier_evoluto.pdf",
-        output_path="/tmp/dossier_finale.pdf",
+        output_path=f"/tmp/{nome_file_pdf}",
         blocchi_dict=blocchi_pdf
     )
 
     logging.info("📄 PDF dossier generato con successo.")
 
-    from storage_handler import upload_pdf_to_supabase
-
     try:
-        # Nome file pulito per Supabase (es: dossier_rossi_srl.pdf)
-        nome_file_pdf = f"dossier_{nome_azienda.lower().replace(' ', '_')}.pdf"
-
-        # Caricamento su Supabase
-        from storage_handler import upload_pdf_to_supabase
-
-        try:
-            nome_file_pdf = f"dossier_{nome_azienda.lower().replace(' ', '_')}.pdf"
-
-            url_pdf = upload_pdf_to_supabase(
-                "/tmp/dossier_finale.pdf",
-                nome_file_pdf
-            )
-        
-            logging.info(f"📤 Dossier PDF caricato su Supabase: {url_pdf}")
-            logging.info("📎 Link pubblico PDF pronto per l’invio via Make o email.")
-        
-        except Exception as e:
-            logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
-            url_pdf = None
+        url_pdf = upload_file_to_supabase(f"/tmp/{nome_file_pdf}", nome_file_pdf)
+        logging.info(f"📘 Dossier PDF caricato su Supabase: {url_pdf}")
+    except Exception as e:
+        logging.warning(f"⚠️ Errore upload PDF: {e}")
+        url_pdf = None
 
     except Exception as e:
         logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
