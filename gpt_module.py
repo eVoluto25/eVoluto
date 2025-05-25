@@ -1,9 +1,11 @@
-import openai
 import os
 import logging
+from openai import OpenAI
 from extractor import estrai_blocchi_da_pdf
 from blocchi_utils import suddividi_blocchi_coerenti
 from relazione_gpt import genera_relazione_gpt
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def carica_prompt_gpt():
     with open("prompt_gpt.txt", encoding="utf-8") as f:
