@@ -17,7 +17,7 @@ Descrizione discorsiva dei 20 bandi selezionati per l’azienda, con motivazioni
 ---
 
 {{bandi_disponibili}}  
-Analisi tecnica dei 20 bandi scelti: requisiti, agevolazioni, strumenti. 180–220 parole.
+Analisi tecnica dei 20 bandi scelti: requisiti, agevolazioni, strumenti e dai un giudizio sulle probabilità di successo per ciascun bando espresso in numeri percentuali. 200–230 parole.
 
 ---
 
