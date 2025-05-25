@@ -146,6 +146,7 @@ def elabora_pdf(data: InputData):
 
     try:
         blocchi_claude = json.loads(html_claude)
+        salva_blocchi_claude(blocchi_claude)
         blocchi_pdf = {**blocchi_gpt, **blocchi_claude}
 
         nome_file_pdf = genera_nome_file(
@@ -161,16 +162,23 @@ def elabora_pdf(data: InputData):
             blocchi_dict=blocchi_pdf
         ) 
         url_pdf = upload_file_to_supabase(f"/tmp/{nome_file_pdf}", nome_file_pdf)
+        aggiorna_stato("pdf_generato")
         logging.info(f"📄 Dossier PDF caricato su Supabase: {url_pdf}")
     
     except Exception as e:
         logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
         url_pdf = None
 
+    if email and url_gpt and url_claude and url_pdf:
+        logging.info("📩 Invio email con risultati")
+        invia_email_risultato(email, url_gpt, url_claude)
+        aggiorna_stato("email_inviata")
+    else:
+        logging.warning("❌ Dati incompleti: email non inviata")
+
     logging.info("📩 Invio email con risultati")
     invia_email_risultato(email, url_gpt, url_claude)
 
-    # 🔁 Invio a scenario Make
     logging.info("🔁 Invio a scenario Make")
     invia_a_make({
         "azienda": nome_azienda,
@@ -180,6 +188,7 @@ def elabora_pdf(data: InputData):
         "relazione_claude": url_claude,
         "dossier_pdf": url_pdf
     })
+    aggiorna_stato("make_inviato")
 
     return {
         "message": "Analisi completata con successo",
