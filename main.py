@@ -159,8 +159,7 @@ try:
         template_path="template/dossier_eVoluto.pdf",
         output_path=f"/tmp/{nome_file_pdf}",
         blocchi_dict=blocchi_pdf
-    )
-     
+    ) 
     url_pdf = upload_file_to_supabase(f"/tmp/{nome_file_pdf}", nome_file_pdf)
     logging.info(f"📄 Dossier PDF caricato su Supabase: {url_pdf}")
     
