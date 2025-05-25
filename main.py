@@ -160,13 +160,20 @@ try:
         output_path=f"/tmp/{nome_file_pdf}",
         blocchi_dict=blocchi_pdf
     )
-
+     
+    url_pdf = upload_file_to_supabase(f"/tmp/{nome_file_pdf}", nome_file_pdf)
+    logging.info(f"📄 Dossier PDF caricato su Supabase: {url_pdf}")
+    
     try:
+        compila_dossier_pdf(
+            template_path="template/dossier_evoluto.pdf",
+            output_path=f"/tmp/{nome_file_pdf}",
+            blocchi_dict=blocchi_pdf
+        )
+
         url_pdf = upload_file_to_supabase(f"/tmp/{nome_file_pdf}", nome_file_pdf)
         logging.info(f"📄 Dossier PDF caricato su Supabase: {url_pdf}")
-    except Exception as e:
-        logging.warning(f"⚠️ Errore upload PDF: {e}")
-        url_pdf = None
+
 
     except Exception as e:
         logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
