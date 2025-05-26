@@ -4,6 +4,7 @@ from openai import OpenAI
 from extractor import estrai_blocchi_da_pdf
 from blocchi_utils import suddividi_blocchi_coerenti
 from relazione_gpt import genera_relazione_gpt
+from storage_handler import salva_output, recupera_output
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
