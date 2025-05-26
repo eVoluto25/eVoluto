@@ -19,6 +19,7 @@ from dossier_pdf import compila_dossier_pdf
 from extractor import estrai_caratteristiche_azienda
 from bandi_utils import seleziona_bandi_priori
 from io import BytesIO
+from storage_handler import upload_html_to_supabase
 from gestore_processo import (
     aggiorna_stato,
     mostra_stato,
