@@ -117,17 +117,19 @@ def elabora_pdf(data: InputData):
     
     logging.info("📄 Generazione HTML bancabile da GPT")
 
+    url_claude = None  # inizializzazione preventiva
+    html_gpt = None
+    url_gpt = None
+
     try:
+        html_gpt = costruisci_payload(caratteristiche_azienda, None, None)
         url_gpt = upload_html_to_supabase(html_gpt, "relazione_gpt.html")
+        aggiorna_stato(email, "html_gpt_generato")
+        logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
     except Exception as e:
         logging.error(f"❌ Errore salvataggio HTML GPT: {e}")
-        url_gpt = None
-        html_gpt = None
-
-   
-    url_claude = None  # inizializzazione preventiva
+        
     if url_gpt and url_claude:
-        html_gpt = costruisci_payload(caratteristiche_azienda, url_gpt, url_claude)
         aggiorna_stato(email, "html_gpt_generato")
         logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
     else:
