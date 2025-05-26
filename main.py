@@ -4,6 +4,7 @@ import os
 import threading
 import logging
 logging.basicConfig(level=logging.INFO)
+from storage_handler import recupera_stato, recupera_output
 from fastapi.responses import JSONResponse
 from fastapi import Body
 from pydantic import BaseModel
