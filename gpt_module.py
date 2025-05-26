@@ -24,7 +24,7 @@ def chiedi_gpt_blocchi(testo, modello="gpt-4-0125-preview"):
 
         try:
             response = client.chat.completions.create(
-                model=modello,
+                model="gpt-4",
                 messages=[
                 {"role": "system", "content": "Sei un analista finanziario."},
                 {"role": "user", "content": prompt}
@@ -34,6 +34,10 @@ def chiedi_gpt_blocchi(testo, modello="gpt-4-0125-preview"):
             )
             testo_generato = response.choices[0].message.content.strip()
             risposte.append(testo_generato)
+
+            # 💾 Salvataggio immediato del blocco analizzato
+            salva_output(f"gpt_blocco_{i+1}", testo_generato, email)
+            
         except Exception as e:
             logging.error(f"❌ Errore GPT sul blocco {i+1}: {e}")
             risposte.append(f"[Errore nel blocco {i+1}]")
