@@ -115,10 +115,21 @@ def elabora_pdf(data: InputData):
     logging.info("✅ Analisi GPT completata")
     
     logging.info("📄 Generazione HTML bancabile da GPT")
-    html_gpt = costruisci_payload(caratteristiche_azienda, url_gpt, url_claude)
-    url_gpt = upload_html_to_supabase(html_gpt, "relazione_gpt.html")
-    aggiorna_stato(email, "html_gpt_generato")
-    logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
+
+    try:
+        url_gpt = upload_html_to_supabase(html_gpt, "relazione_gpt.html")
+    except Exception as e:
+        logging.error(f"❌ Errore salvataggio HTML GPT: {e}")
+        url_gpt = None
+
+   
+    url_claude = None  # inizializzazione preventiva
+    if url_gpt and url_claude:
+        html_gpt = costruisci_payload(caratteristiche_azienda, url_gpt, url_claude)
+        aggiorna_stato(email, "html_gpt_generato")
+        logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
+    else:
+        logging.error("❌ URL GPT o Claude mancanti. Impossibile generare HTML finale.")
 
     logging.info("🔎 Aggiornamento bandi disponibili...")
     bandi_non_filtrati = aggiorna_bandi()
