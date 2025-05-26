@@ -1,5 +1,6 @@
 {
-  "urls": [
-    "https://api.incentivi.gov.it/open-data/incentivi.json"
-  ]
+  "incentivi.gov.it": {
+    "url": "https://www.incentivi.gov.it/sites/default/files/open-data/2025-4-5_opendata-export.json",
+    "formato": "json"
+  }
 }
