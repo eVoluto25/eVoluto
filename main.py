@@ -1,6 +1,7 @@
 import requests
 import httpx
 import os
+import json
 import threading
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -123,7 +124,7 @@ def elabora_pdf(data: InputData):
 
     try:
         html_gpt = costruisci_payload(caratteristiche_azienda, None, None)
-        url_gpt = upload_html_to_supabase(html_gpt, "relazione_gpt.html")
+        url_gpt = upload_html_to_supabase(json.dumps(html_gpt), "relazione_gpt.html")
         aggiorna_stato(email, "html_gpt_generato")
         logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
     except Exception as e:
