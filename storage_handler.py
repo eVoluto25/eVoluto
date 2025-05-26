@@ -4,7 +4,10 @@ import os
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_API_KEY = os.getenv("SUPABASE_API_KEY")
-SUPABASE_BUCKET = os.getenv("SUPABASE_BUCKET", "evoluto")
+SUPABASE_BUCKET = os.getenv("SUPABASE_BUCKET_NAME")
+if not SUPABASE_BUCKET:
+    raise EnvironmentError("❌ Variabile d'ambiente SUPABASE_BUCKET_NAME mancante.")
+
 
 def upload_html_to_supabase(html_content, file_name):
     if not (SUPABASE_URL and SUPABASE_API_KEY and SUPABASE_BUCKET):
