@@ -1,12 +1,25 @@
+def costruisci_payload(caratteristiche_azienda, url_gpt=None, url_claude=None):
+    azienda = caratteristiche_azienda.get("azienda", "ND")
+    partita_iva = caratteristiche_azienda.get("partita_iva", "ND")
+    ateco = caratteristiche_azienda.get("ateco", "ND")
+    email = caratteristiche_azienda.get("email", "ND")
+    telefono = caratteristiche_azienda.get("telefono", "ND")
 
-def costruisci_payload(caratteristiche, url_gpt, url_claude):
-    return {
-        "azienda": caratteristiche.get("denominazione"),
-        "partita_iva": caratteristiche.get("partita_iva", "ND"),
-        "ateco": caratteristiche.get("codice_ateco", "ND"),
-        "email": caratteristiche.get("email"),
-        "telefono": caratteristiche.get("telefono"),
-        "output_gpt": url_gpt,
-        "output_claude": url_claude,
-        "inviato": False
-    }
+    html = f"""
+    <html>
+      <head><title>Relazione GPT</title></head>
+      <body>
+        <h1>🧠 Analisi GPT per {azienda}</h1>
+        <ul>
+          <li><strong>Partita IVA:</strong> {partita_iva}</li>
+          <li><strong>Codice ATECO:</strong> {ateco}</li>
+          <li><strong>Email:</strong> {email}</li>
+          <li><strong>Telefono:</strong> {telefono}</li>
+        </ul>
+        <h2>📄 File Analisi</h2>
+        <p>👉 <a href="{url_gpt}" target="_blank">Scarica analisi GPT</a></p>
+        <p>👉 <a href="{url_claude}" target="_blank">Scarica analisi bandi (Claude)</a></p>
+      </body>
+    </html>
+    """
+    return html
