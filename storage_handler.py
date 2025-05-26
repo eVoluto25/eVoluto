@@ -75,3 +75,11 @@ def recupera_output(tipo, email, indice=None):
         return response.text
     else:
         return None
+
+def salva_output_blocco(modulo, email, i, contenuto):
+    chiave = f"{modulo}_blocco_{i}"
+    salva_output(chiave, contenuto, email)
+
+def recupera_output_blocco(modulo, email, i):
+    chiave = f"{modulo}_blocco_{i}"
+    return recupera_output(chiave, email)
