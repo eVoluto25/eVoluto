@@ -2,6 +2,7 @@ import json
 import anthropic
 import logging
 from blocchi_utils import suddividi_blocchi_coerenti
+from storage_handler import salva_output_blocco, recupera_output_blocco
 from prompt_claude import carica_prompt_claude
 
 def carica_prompt_claude():
@@ -10,11 +11,18 @@ def carica_prompt_claude():
 
 def genera_relazione_con_claude(dati_input):
     prompt_base = carica_prompt_claude()
+    email = dati_input["email"]
     client = anthropic.Anthropic(api_key=dati_input["claude_api_key"])
     blocchi = suddividi_blocchi_coerenti(dati_input["contenuto"])
     risposte = []
 
     for i, blocco in enumerate(blocchi):
+        contenuto_salvato = recupera_output_blocco("claude", email, i)
+        if contenuto_salvato:
+            logging.info(f"🧠 Blocco {i+1} già analizzato. Skipping...")
+            risposte.append(contenuto_salvato)
+            continue
+
         try:
             logging.info(f"📤 Inviando blocco {i+1}/{len(blocchi)} a Claude, lunghezza: {len(blocco)} caratteri")
 
@@ -38,9 +46,11 @@ def genera_relazione_con_claude(dati_input):
             )
 
             contenuto = response.content[0].text.strip()
+            salva_output_blocco("claude", email, i, contenuto)
             risposte.append(contenuto)
+            
         except Exception as e:
             logging.error(f"❌ Errore Claude sul blocco {i+1}: {e}")
-            risposte.append("ERRORE")
+            risposte.append(f"[Errore nel blocco {i+1}]")
 
     return "\n\n".join(risposte)
