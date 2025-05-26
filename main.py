@@ -52,6 +52,22 @@ def elabora_pdf(data: InputData):
     email = data.email
     telefono = data.phone
 
+    # 🔁 Verifica stato analisi precedente
+    stato_attuale = recupera_stato(email)
+
+    if stato_attuale == "email_inviata":
+        logging.info("✅ Analisi già completata. Nessuna azione necessaria.")
+        return {
+            "message": "Analisi già completata",
+            "relazione_gpt": recupera_output("relazione_gpt", email),
+            "relazione_claude": recupera_output("relazione_claude", email),
+            "dossier_pdf": recupera_output("dossier_pdf", email)
+        }
+    elif stato_attuale == "pdf_generato":
+        logging.info("🔁 Analisi GPT completata. Riprendo da Claude...")
+    elif stato_attuale == "gpt_completato":
+        logging.info("🔁 Analisi Claude completata. Riprendo dal PDF...")
+
     logging.info("📥 Richiesta ricevuta al webhook")
     logging.info("🔁 Entrata nella funzione analizza_pdf")
     logging.info(f"📤 File URL: {file_url}")
