@@ -26,6 +26,7 @@ from gestore_processo import (
     salva_blocchi_gpt,
     salva_blocchi_claude
 )
+from storage_handler import salva_output, recupera_output
 
 app = FastAPI()
 
@@ -34,6 +35,12 @@ class InputData(BaseModel):
     name: str
     phone: str
     email: str
+
+def aggiorna_stato(email, stato):
+    salva_output("stato", stato, email)
+
+def recupera_stato(email):
+    return recupera_output("stato", email) or ""
 
 @app.api_route("/", methods=["GET", "HEAD"])
 def root_head():
