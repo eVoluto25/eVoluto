@@ -122,6 +122,7 @@ def elabora_pdf(data: InputData):
     except Exception as e:
         logging.error(f"❌ Errore salvataggio HTML GPT: {e}")
         url_gpt = None
+        html_gpt = None
 
    
     url_claude = None  # inizializzazione preventiva
