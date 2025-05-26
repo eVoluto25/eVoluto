@@ -107,7 +107,7 @@ def elabora_pdf(data: InputData):
     logging.info(f"📚 Estratti {len(blocchi)} blocchi dal PDF")
 
     logging.info("🤖 Chiamata a GPT per analisi blocchi...")
-    risposte_gpt = chiedi_gpt_blocchi(blocchi)
+    risposte_gpt = chiedi_gpt_blocchi(blocchi, email)
     dati_estratti = unisci_output_gpt(risposte_gpt)
     blocchi_gpt = dati_estratti.split("\n\n")
     salva_blocchi_gpt(blocchi_gpt)
