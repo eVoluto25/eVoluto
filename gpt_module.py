@@ -5,6 +5,7 @@ from extractor import estrai_blocchi_da_pdf
 from blocchi_utils import suddividi_blocchi_coerenti
 from relazione_gpt import genera_relazione_gpt
 from storage_handler import salva_output, recupera_output
+from storage_handler import salva_output_blocco, recupera_output_blocco
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -20,6 +21,12 @@ def chiedi_gpt_blocchi(testo, modello="gpt-4-0125-preview"):
 
     prompt_base = carica_prompt_gpt()
     for i, blocco in enumerate(blocchi):
+        contenuto_salvato = recupera_output_blocco("gpt", email, i)
+        if contenuto_salvato:
+            logging.info(f"📦 Blocco {i+1} già analizzato. Skipping...")
+            risposte.append(contenuto_salvato)
+            continue
+
         prompt = f"{prompt_base}\n\n[Blocco {i+1}]\n\n{blocco}"
         logging.info(f"📤 Inviando blocco {i+1}/{len(blocchi)} a GPT, lunghezza: {len(blocco)} caratteri")
 
