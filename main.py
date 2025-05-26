@@ -118,7 +118,11 @@ def elabora_pdf(data: InputData):
 
     url_claude = genera_relazione_con_claude({
         "caratteristiche_azienda": caratteristiche_azienda,
-        "email": email
+        "email": email,
+        "totale_bandi_attivi": totale_bandi_attivi,
+        "totale_importo_bandi": totale_importo_bandi,
+        "url_output_gpt": url_gpt,
+        "bandi_filtrati": bandi_filtrati
     })
     
     logging.info("📄 Generazione HTML bancabile da GPT")
