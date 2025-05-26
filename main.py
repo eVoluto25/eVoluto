@@ -169,7 +169,11 @@ def elabora_pdf(data: InputData):
         logging.warning(f"⚠️ Errore generazione dossier PDF: {e}")
         url_pdf = None
 
-    if email and url_gpt and url_claude and url_pdf:
+    if (
+        email and url_gpt and url_claude and url_pdf
+        and "Errore nel blocco" not in url_gpt
+        and "Errore nel blocco" not in url_claude
+    ):
         logging.info("📩 Invio email con risultati")
         invia_email_risultato(email, url_gpt, url_claude)
         aggiorna_stato("email_inviata")
