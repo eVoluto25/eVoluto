@@ -13,7 +13,7 @@ def carica_prompt_gpt():
     with open("prompt_gpt.txt", encoding="utf-8") as f:
         return f.read()
 
-def chiedi_gpt_blocchi(testo, email, modello="gpt-4-0125-preview"):
+def chiedi_gpt_blocchi(testo, email, modello="gpt-3.5-turbo"):
     
     blocco_grezzo = testo  # usa direttamente il testo passato in input
     blocchi = suddividi_blocchi_coerenti(blocco_grezzo)
