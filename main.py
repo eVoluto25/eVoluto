@@ -115,6 +115,8 @@ def elabora_pdf(data: InputData):
     salva_blocchi_gpt(blocchi_gpt)
     aggiorna_stato(email, "analisi_gpt_completata")
     logging.info("✅ Analisi GPT completata")
+
+    url_claude = genera_relazione_con_claude(caratteristiche_azienda, email)
     
     logging.info("📄 Generazione HTML bancabile da GPT")
 
