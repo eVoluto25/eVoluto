@@ -111,19 +111,19 @@ def elabora_pdf(data: InputData):
     dati_estratti = unisci_output_gpt(risposte_gpt)
     blocchi_gpt = dati_estratti.split("\n\n")
     salva_blocchi_gpt(blocchi_gpt)
-    aggiorna_stato("analisi_gpt_completata")
+    aggiorna_stato(email, "analisi_gpt_completata")
     logging.info("✅ Analisi GPT completata")
     
     logging.info("📄 Generazione HTML bancabile da GPT")
     html_gpt = costruisci_payload(caratteristiche_azienda, url_gpt, url_claude)
     url_gpt = upload_html_to_supabase(html_gpt, "relazione_gpt.html")
-    aggiorna_stato("html_gpt_generato")
+    aggiorna_stato(email, "html_gpt_generato")
     logging.info(f"✅ Relazione GPT caricata: {url_gpt}")
 
     logging.info("🔎 Aggiornamento bandi disponibili...")
     bandi_non_filtrati = aggiorna_bandi()
     bandi_filtrati = seleziona_bandi_priori(bandi_non_filtrati)
-    aggiorna_stato("bandi_filtrati_completati")
+    aggiorna_stato(email, "bandi_filtrati_completati")
 
     # Calcolo del numero e importo totale dei bandi
     totale_bandi_attivi = len(bandi_compatibili)
@@ -142,7 +142,7 @@ def elabora_pdf(data: InputData):
     }
 
     logging.info("🧠 Generazione relazione Claude")
-    aggiorna_stato("generazione_relazione_claude_iniziata")
+    aggiorna_stato(email, "generazione_relazione_claude_iniziata")
     html_claude = genera_relazione_con_claude(
         caratteristiche_azienda={
             "nome": nome_azienda,
@@ -157,9 +157,9 @@ def elabora_pdf(data: InputData):
         totale_importo_bandi=totale_importo_bandi
     )
 
-    aggiorna_stato("generazione_relazione_claude_completata")
+    aggiorna_stato(email, "generazione_relazione_claude_completata")
     url_claude = upload_html_to_supabase(html_claude, "relazione_claude.html")
-    aggiorna_stato("html_claude_caricato")
+    aggiorna_stato(email, "html_claude_caricato")
     logging.info(f"✅ Relazione Claude caricata: {url_claude}")
 
     if not url_gpt or not url_claude:
@@ -185,7 +185,7 @@ def elabora_pdf(data: InputData):
             blocchi_dict=blocchi_pdf
         ) 
         url_pdf = upload_file_to_supabase(f"/tmp/{nome_file_pdf}", nome_file_pdf)
-        aggiorna_stato("pdf_generato")
+        aggiorna_stato(email, "pdf_generato")
         logging.info(f"📄 Dossier PDF caricato su Supabase: {url_pdf}")
     
     except Exception as e:
@@ -215,7 +215,7 @@ def elabora_pdf(data: InputData):
         "relazione_claude": url_claude,
         "dossier_pdf": url_pdf
     })
-    aggiorna_stato("make_inviato")
+    aggiorna_stato(email, "make_inviato")
 
     return {
         "message": "Analisi completata con successo",
