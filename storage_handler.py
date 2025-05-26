@@ -45,3 +45,33 @@ def upload_pdf_to_supabase(file_path, file_name):
         return f"{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET}/{file_name}"
     else:
         raise Exception(f"❌ Upload fallito PDF: {response.status_code} – {response.text}")
+
+def salva_output(tipo, contenuto, email, indice=None):
+    nome_file = f"{tipo}_{email}"
+    if indice is not None:
+        nome_file += f"_{indice}"
+    file_name = f"{nome_file}.txt"
+    url = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}/{file_name}"
+
+    headers = {
+        "apikey": SUPABASE_API_KEY,
+        "Authorization": f"Bearer {SUPABASE_API_KEY}",
+        "Content-Type": "text/plain"
+    }
+
+    response = requests.put(url, headers=headers, data=contenuto.encode("utf-8"))
+    if response.status_code not in [200, 201]:
+        raise Exception(f"Errore nel salvataggio Supabase: {response.status_code} - {response.text}")
+
+def recupera_output(tipo, email, indice=None):
+    nome_file = f"{tipo}_{email}"
+    if indice is not None:
+        nome_file += f"_{indice}"
+    file_name = f"{nome_file}.txt"
+    url = f"{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET}/{file_name}"
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.text
+    else:
+        return None
