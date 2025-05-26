@@ -33,7 +33,7 @@ def chiedi_gpt_blocchi(testo, modello="gpt-4-0125-preview"):
                 max_tokens=1500
             )
             testo_generato = response.choices[0].message.content.strip()
-            risposte.append(contenuto)
+            risposte.append(testo_generato)
         except Exception as e:
             logging.error(f"❌ Errore GPT sul blocco {i+1}: {e}")
             risposte.append(f"[Errore nel blocco {i+1}]")
