@@ -22,6 +22,7 @@ def chiedi_gpt_blocchi(testo, modello="gpt-4-0125-preview"):
     prompt_base = carica_prompt_gpt()
     for i, blocco in enumerate(blocchi):
         contenuto_salvato = recupera_output_blocco("gpt", email, i)
+        logging.info(f"📤 Recupero blocco {i+1}/{len(blocchi)} per {email}: {'Trovato, salto elaborazione' if contenuto_salvato else 'Non trovato, procedo con GPT'}")
         if contenuto_salvato:
             logging.info(f"📦 Blocco {i+1} già analizzato. Skipping...")
             risposte.append(contenuto_salvato)
@@ -45,6 +46,7 @@ def chiedi_gpt_blocchi(testo, modello="gpt-4-0125-preview"):
 
             # 💾 Salvataggio immediato del blocco analizzato
             salva_output(f"gpt_blocco_{i+1}", testo_generato, email)
+            logging.info(f"💾 Salvato blocco {i+1}/{len(blocchi)} per {email}")
             
         except Exception as e:
             logging.error(f"❌ Errore GPT sul blocco {i+1}: {e}")
