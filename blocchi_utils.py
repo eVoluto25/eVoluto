@@ -10,7 +10,16 @@ def suddividi_blocchi_coerenti(testo: str, max_lunghezza: int = 4500) -> list[st
     blocchi = []
     blocco_corrente = ""
 
+    parole_inutili = ["partita iva", "codice fiscale", "numero rea", "registro imprese"]
+
+    def è_inutile(paragrafo):
+        p = paragrafo.lower()
+        return any(kw in p for kw in parole_inutili) or len(p.strip()) < 30
+
     for paragrafo in paragrafi:
+        if è_inutile(paragrafo):
+            continue  # Salta blocchi poco informativi o identificativi
+            
         if len(blocco_corrente) + len(paragrafo) + 2 < max_lunghezza:
             blocco_corrente += paragrafo.strip() + "\n\n"
         else:
